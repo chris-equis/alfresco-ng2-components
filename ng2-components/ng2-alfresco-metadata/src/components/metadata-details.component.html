@@ -1,0 +1,40 @@
+<div class="mdl-card mdl-shadow--2dp metadata-details-card">
+  <ul class="mdl-list">
+    <li class="mdl-list__item" *ngIf="node.content">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-label">Type</span>
+        <span>{{ node.content.mimeTypeName }}</span>
+      </span>
+    </li>
+
+    <li class="mdl-list__item" *ngIf="node.isFolder">
+      <span class="mdl-list__item-label">Type</span>
+      <span>Folder</span>
+    </li>
+
+    <li class="mdl-list__item" *ngIf="node.content">
+      <span class="mdl-list__item-label">Size</span>
+      <span>{{ node.content.sizeInBytes }} bytes</span>
+    </li>
+
+    <li class="mdl-list__item">
+      <span class="mdl-list__item-label">Location</span>
+      <span>{{ node.path.elements[node.path.elements.length - 1].name }}</span>
+    </li>
+
+    <li class="mdl-list__item">
+      <span class="mdl-list__item-label">Owner</span>
+      <span>{{ node.createdByUser.displayName }}</span>
+    </li>
+
+    <li class="mdl-list__item">
+      <span class="mdl-list__item-label">Created</span>
+      <span>{{ node.createdAt }}</span>
+    </li>
+
+    <li class="mdl-list__item">
+      <span class="mdl-list__item-label">Modified</span>
+      <span>{{ node.modifiedAt }} by {{ node.modifiedByUser.displayName }}</span>
+    </li>
+  </ul>
+</div>
