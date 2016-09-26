@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnChanges, Injectable } from '@angular/core';
 import { AlfrescoAuthenticationService } from 'ng2-alfresco-core';
 import { Observable } from 'rxjs/Rx';
 import { MetadataDetailsComponent } from './components/metadata-details.component';
-// import { NodeService } from 'ng2-activiti-form';
+import { MetadataService } from './ng2-alfresco-metadata.service';
 
 declare let __moduleName: string;
 
@@ -12,7 +12,8 @@ declare let __moduleName: string;
     selector: 'ng2-alfresco-metadata',
     templateUrl: './ng2-alfresco-metadata.component.html',
     styleUrls: ['./ng2-alfresco-metadata.component.css'],
-    directives: [ MetadataDetailsComponent ]
+    directives: [MetadataDetailsComponent],
+    providers: [MetadataService]
 })
 export class Ng2AlfrescoMetadataComponent implements OnInit, OnChanges {
     @Input()
@@ -21,7 +22,7 @@ export class Ng2AlfrescoMetadataComponent implements OnInit, OnChanges {
 
     loaded: boolean = false;
 
-    constructor(private authService: AlfrescoAuthenticationService) {
+    constructor(private metadataService: MetadataService) {
         console.log('Is it me?', this);
     }
 
@@ -31,10 +32,6 @@ export class Ng2AlfrescoMetadataComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes) {
 
-    }
-
-    private get alfrescoApi() {
-        return this.authService.alfrescoApi;
     }
 
     get hasNode(): boolean {
