@@ -9,8 +9,10 @@
     rxjs: 'node_modules/rxjs',
 
     'ng2-translate': 'node_modules/ng2-translate',
-    'ng2-alfresco-core': 'node_modules/ng2-alfresco-core/dist',
+    
+    'ng2-activiti-form': 'node_modules/ng2-activiti-form/dist',
 
+    'ng2-alfresco-core': 'node_modules/ng2-alfresco-core/dist',
     'ng2-alfresco-metadata': 'node_modules/ng2-alfresco-metadata/dist',
     'ng2-alfresco-datatable': 'node_modules/ng2-alfresco-datatable/dist',
     'ng2-alfresco-documentlist': 'node_modules/ng2-alfresco-documentlist/dist'
@@ -22,8 +24,10 @@
     rxjs: { defaultExtension: 'js' },
 
     'ng2-translate': { defaultExtension: 'js' },
-    'ng2-alfresco-core': { main: 'index.js', defaultExtension: 'js' },
 
+    'ng2-activiti-form': { main: 'index.js', defaultExtension: 'js' },
+
+    'ng2-alfresco-core': { main: 'index.js', defaultExtension: 'js' },
     'ng2-alfresco-metadata': { main: 'index.js', defaultExtension: 'js' },
     'ng2-alfresco-datatable': { main: 'index.js', defaultExtension: 'js' },
     'ng2-alfresco-documentlist': { main: 'index.js', defaultExtension: 'js' }

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { HTTP_PROVIDERS } from '@angular/http';
 
@@ -56,6 +56,7 @@ import {
                     [contextMenuActions]="true"
                     [contentActions]="true"
                     [multiselect]="true"
+                    (nodeClick)=onNodeClick($event)
                     (folderChange)="onFolderChanged($event)">
                 <content-columns>
                     <content-column key="$thumbnail" type="image"></content-column>
@@ -121,15 +122,20 @@ import {
                     </content-action>
                 </content-actions>
             </alfresco-document-list>
-            <ng2-alfresco-metadata></ng2-alfresco-metadata>
+
+            <ng2-alfresco-metadata
+                [nodeEntry]="selectedNodeEntry">
+            </ng2-alfresco-metadata>
+
             <context-menu-holder></context-menu-holder>
-            <button (click)="documentList.reload()">Reload</button>
+            <button id="reload-button" (click)="documentList.reload()">Reload</button>
         </div>
     `
 })
 class MetadataDemo implements OnInit {
 
     currentPath: string = '/';
+    selectedNodeEntry: any;
     authenticated: boolean;
 
     ecmHost: string = 'http://localhost:8080/';
@@ -140,7 +146,8 @@ class MetadataDemo implements OnInit {
         private authService: AlfrescoAuthenticationService,
         private settingsService: AlfrescoSettingsService,
         translation: AlfrescoTranslationService,
-        private documentActions: DocumentActionsService
+        private documentActions: DocumentActionsService,
+        private element: ElementRef
     ) {
         settingsService.ecmHost = this.ecmHost;
         settingsService.setProviders('ECM');
@@ -185,6 +192,8 @@ class MetadataDemo implements OnInit {
             ticket => {
                 this.ticket = this.authService.getTicketEcm();
                 this.authenticated = true;
+
+                console.log(this.element.nativeElement.querySelectorAll('*'));
             },
             error => {
                 console.log(error);
@@ -196,6 +205,10 @@ class MetadataDemo implements OnInit {
         if (event) {
             this.currentPath = event.path;
         }
+    }
+
+    onNodeClick(event?: any) {
+        this.selectedNodeEntry = event.value.entry;
     }
 
     viewDetails(event) {
