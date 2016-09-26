@@ -1,35 +1,47 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AlfrescoMdlTabsDirective } from 'ng2-alfresco-core';
+import { Component, Input, OnInit, OnChanges, Injectable } from '@angular/core';
+import { AlfrescoAuthenticationService } from 'ng2-alfresco-core';
+import { Observable } from 'rxjs/Rx';
+import { MetadataDetailsComponent } from './components/metadata-details.component';
+// import { NodeService } from 'ng2-activiti-form';
 
 declare let __moduleName: string;
 
+@Injectable()
 @Component({
     moduleId: __moduleName,
     selector: 'ng2-alfresco-metadata',
     templateUrl: './ng2-alfresco-metadata.component.html',
-    styleUrls: ['./ng2-alfresco-metadata.component.css']
+    styleUrls: ['./ng2-alfresco-metadata.component.css'],
+    directives: [ MetadataDetailsComponent ]
 })
-export class Ng2AlfrescoMetadataComponent implements OnInit {
+export class Ng2AlfrescoMetadataComponent implements OnInit, OnChanges {
     @Input()
-    nodeId: number;
-    
+    nodeEntry: Observable<any>;
+    // could import "MinimalNodeEntity" from "documentlist" component
+
     loaded: boolean = false;
 
-    constructor() {
+    constructor(private authService: AlfrescoAuthenticationService) {
         console.log('Is it me?', this);
     }
 
     ngOnInit() {
-        setTimeout(() => {
-            this.loaded = true;
-        }, 1000);
+        console.log('should init');
     }
 
-    get isSomething(): boolean {
-        return false;
+    ngOnChanges(changes) {
+
     }
 
-    get isSomethingElse(): boolean {
-        return !this.isSomething;
+    private get alfrescoApi() {
+        return this.authService.alfrescoApi;
+    }
+
+    get hasNode(): boolean {
+        return !!this.nodeEntry;
+    }
+
+    get visible(): boolean {
+        return this.hasNode;
     }
 }
