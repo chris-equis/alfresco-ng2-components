@@ -1,26 +1,30 @@
-<div class="mdl-card mdl-shadow--2dp">
+<div class="mdl-card mdl-shadow--2dp" *ngIf="node">
+  <div
+    class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
+    *ngIf="loading">
+  </div>
+
   <div class="mdl-card__title">
     <div class="mdl-card__title-text">
       Tags ({{ tags.length }})
     </div>
   </div>
 
-  <div
-    class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
-    *ngIf="loading"></div>
+  <div class="mdl-card__content" *ngIf="!tags.length && !editing">
+    <p>No tags, yet!</p>
+  </div>
 
-  <div class="mdl-card__actions mdl-card--border">
-    <p *ngIf="!tags.length && !editing">No tags, yet!</p>
-
+  <div class="mdl-card__content" *ngIf="tags.length && !editing">
     <span
       class="mdl-chip tag-item"
-      *ngIf="!!(tags.length && tag)"
       *ngFor="let tag of tags"
       [hidden]="editing">
       <span class="mdl-chip__text">{{ tag }}</span>
     </span>
+  </div>
 
-    <form action="#" [hidden]="!editing" class="tag-edit-form">
+  <div class="mdl-card__actions" *ngIf="editing">
+    <form action="#">
       <div class="mdl-textfield mdl-js-textfield">
         <input
           class="mdl-textfield__input"
@@ -28,28 +32,28 @@
           placeholder="Comma separated tags"
           [(ngModel)]="commaSeparatedTags">
       </div>
+
+      <div class="mdl-button-group">
+        <button
+          class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+          (click)="ngOnInit()">
+          <i class="material-icons">undo</i>
+        </button>
+
+        <button
+          class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+          (click)="editing = false">
+          <i class="material-icons">done</i>
+        </button>    
+      </div>
     </form>
   </div>
 
-  <div class="mdl-card__menu" *ngIf="editing">
+  <div class="mdl-card__menu">
     <button
       class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
-      (click)="ngOnInit()">
-      <i class="material-icons">undo</i>
-    </button>
-
-    <button
-      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
-      (click)="editing = false">
-      <i class="material-icons">done</i>
-    </button>
-  </div>
-
-  <div class="mdl-card__menu" *ngIf="!editing">
-    <button
-      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
-      
-      (click)="editing = true">
+      (click)="editing = true"
+      [disabled]="editing">
       <i class="material-icons">edit</i>
     </button>
   </div>

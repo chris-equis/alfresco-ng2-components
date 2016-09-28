@@ -1,4 +1,9 @@
-<div class="mdl-card mdl-shadow--2dp">
+<div class="mdl-card mdl-shadow--2dp" *ngIf="node">
+  <div
+    class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
+    *ngIf="loading">
+  </div>
+
   <div class="mdl-card__title">
     <div class="mdl-card__title-text">
       Comments ({{ comments.length }})
@@ -6,30 +11,27 @@
   </div>
 
   <div
-    class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
-    *ngIf="loading"></div>
-
-  <div
-    class="mdl-card__actions mdl-card--border"
+    class="mdl-card__content"
     *ngIf="comments.length">
 
-    <div class="mdl-list metadata-comments">
+    <div class="mdl-list alf-comments">
       <div
-        class="mdl-list__item metadata-comment"
+        class="mdl-list__item alf-comments__comment"
         *ngFor='let comment of comments'>
 
-        <span class="mdl-list__item-primary-content metadata-comment-body">
+        <div class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-avatar">person</i>
-          <div class="metadata-comment-content">
-            <h6>{{ comment.entry.createdBy.firstName }}</h6>
-            <p>{{ comment.entry.content }}</p>
+          <div class="alf-comments__comment-body">
+            <span class="alf-comments__comment-author">{{ comment.entry.createdBy.firstName }}</span>
+            <span class="alf-comments__comment-content">{{ comment.entry.content }}</span>
+            <span class="alf-comments__comment-timestamp">{{ comment.entry.createdAt }}</span>              
           </div>
-        </span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="mdl-card__actions mdl-card--border">
+  <div class="mdl-card__actions">
     <form class="add-comment-form" action="#">
       <div class="mdl-textfield mdl-js-textfield">
         <textarea
@@ -39,7 +41,7 @@
           [(ngModel)]="comment"></textarea>
       </div>
 
-      <div *ngIf="comment">
+      <div class="mdl-button-group" *ngIf="comment">
         <button
           class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
           (click)="clearComment()">
