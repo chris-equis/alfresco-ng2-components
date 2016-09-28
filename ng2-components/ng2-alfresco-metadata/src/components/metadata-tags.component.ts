@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MetadataTagService } from '../services/metadata-tag-service';
 
 declare let __moduleName: string;
@@ -10,7 +10,7 @@ declare let __moduleName: string;
     styleUrls: ['./metadata-tags.component.css'],
     providers: [ MetadataTagService ]
 })
-export class MetadataTagsComponent implements OnInit {
+export class MetadataTagsComponent implements OnChanges {
     @Input()
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
@@ -35,7 +35,7 @@ export class MetadataTagsComponent implements OnInit {
             .filter((tag:string):boolean => !!tag);
     }
 
-    ngOnInit() {
+    loadTags() {
         this.loading = true;
 
         this
@@ -49,5 +49,14 @@ export class MetadataTagsComponent implements OnInit {
             }, error => {
                 this.tags = [];
             })
+    }
+
+    ngOnChanges(changes) {
+        const node = changes.node.currentValue;
+
+        if(node) {
+            this.node = node;
+            this.loadTags();
+        }
     }
 }
