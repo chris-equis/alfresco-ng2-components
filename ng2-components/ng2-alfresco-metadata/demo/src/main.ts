@@ -124,7 +124,7 @@ import {
             </alfresco-document-list>
 
             <ng2-alfresco-metadata
-                [nodeEntry]="selectedNodeEntry">
+                [node]="selectedNodeEntry">
             </ng2-alfresco-metadata>
 
             <context-menu-holder></context-menu-holder>
@@ -192,11 +192,8 @@ class MetadataDemo implements OnInit {
             ticket => {
                 this.ticket = this.authService.getTicketEcm();
                 this.authenticated = true;
-
-                console.log(this.element.nativeElement.querySelectorAll('*'));
             },
             error => {
-                console.log(error);
                 this.authenticated = false;
             });
     }

@@ -1,6 +1,6 @@
-<div class="metadata" *ngIf="nodeEntry">
+<div class="metadata" *ngIf="!!node">
   <div class="metadata-title">
-      <h5>{{ nodeEntry.name }}</h5>
+      <h5>{{ node.name }}</h5>
   </div>
 
   <div class="metadata-tabs mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -11,10 +11,10 @@
     </div>
 
     <div class="mdl-tabs__panel is-active" id="metadata-details-tab-content">
-      <metadata-details [node]="nodeEntry"></metadata-details>
-      <metadata-advanced-properties [node]="nodeEntry"></metadata-advanced-properties>
-      <metadata-comments [node]="nodeEntry"></metadata-comments>
-      <metadata-tags [node]="nodeEntry"></metadata-tags>
+      <metadata-details [node]="node"></metadata-details>
+      <metadata-advanced-properties [node]="node"></metadata-advanced-properties>
+      <metadata-comments [node]="node"></metadata-comments>
+      <metadata-tags [node]="node"></metadata-tags>
     </div>
 
     <div class="mdl-tabs__panel" id="metadata-activity-tab-content">
