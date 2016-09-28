@@ -24,33 +24,22 @@ export class MetadataCommentsComponent implements OnInit, OnChanges {
     ) {}
 
     ngOnInit() {
-        this.loading = true;
+        
     }
 
     ngOnChanges(changes) {
-        this.getNodeComments();
-    }
+        const node = changes.node.currentValue;
 
-    private getNodeComments() {
-        this
-            .metadata
-            .getNodeComments(this.node.id)
-            .finally(() => {
-                this.loading = false;
-            })
-            .subscribe((result:any) => {
-                this.comments = result.list.entries;
-            }, error => {
-                this.comments = [];
-            })
+        if(node) {
+            this.node = node;
+            this.getNodeComments();
+        }
     }
 
     saveComment() {
         this.loading = true;
 
-        this
-            .metadata
-            .addComment(this.node.id, this.comment)
+        this.metadata.addComment(this.node.id, this.comment)
             .finally(() => {
                 this.loading = false;
             })
@@ -64,5 +53,18 @@ export class MetadataCommentsComponent implements OnInit, OnChanges {
 
     clearComment() {
         this.comment = '';
+    }
+
+    private getNodeComments() {
+        this.loading = true;
+        this.metadata.getNodeComments(this.node.id)
+            .finally(() => {
+                this.loading = false;
+            })
+            .subscribe((result:any) => {
+                this.comments = result.list.entries;
+            }, error => {
+                this.comments = [];
+            })
     }
 }
