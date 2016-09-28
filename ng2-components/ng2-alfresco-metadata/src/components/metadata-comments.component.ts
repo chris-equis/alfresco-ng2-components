@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MetadataService } from '../ng2-alfresco-metadata.service';
+import { MetadataCommentService } from '../services/metadata-comment-service';
 
 declare let __moduleName: string;
 
@@ -8,7 +8,7 @@ declare let __moduleName: string;
     selector: 'metadata-comments',
     templateUrl: './metadata-comments.component.html',
     styleUrls: [ './metadata-comments.component.css' ],
-    providers: [ MetadataService ]
+    providers: [ MetadataCommentService ]
 })
 export class MetadataCommentsComponent implements OnInit {
     @Input()
@@ -20,7 +20,7 @@ export class MetadataCommentsComponent implements OnInit {
     comment: string = '';
 
     constructor(
-        private metadata: MetadataService
+        private metadata: MetadataCommentService
     ) {}
 
     ngOnInit() {
@@ -32,7 +32,7 @@ export class MetadataCommentsComponent implements OnInit {
             .finally(() => {
                 this.loading = false;
             })
-            .subscribe((result:Object) => {
+            .subscribe((result: any) => {
                 this.comments = result.list.entries;
             }, error => {
                 this.comments = [];

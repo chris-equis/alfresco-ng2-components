@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MetadataService } from '../ng2-alfresco-metadata.service';
+import { MetadataTagService } from '../services/metadata-tag-service';
 
 declare let __moduleName: string;
 
@@ -8,7 +8,7 @@ declare let __moduleName: string;
     selector: 'metadata-tags',
     templateUrl: './metadata-tags.component.html',
     styleUrls: ['./metadata-tags.component.css'],
-    providers: [ MetadataService ]
+    providers: [ MetadataTagService ]
 })
 export class MetadataTagsComponent implements OnInit {
     @Input()
@@ -20,9 +20,9 @@ export class MetadataTagsComponent implements OnInit {
     editing: boolean = false;
 
     constructor(
-        private metadata: MetadataService
+        private metadata: MetadataTagService
     ) {
-        
+
     }
 
     get commaSeparatedTags() {
