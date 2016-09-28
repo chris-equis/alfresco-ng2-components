@@ -34,13 +34,15 @@
   }
 
   :host .metadata-tabs > .mdl-tabs__panel {
-    padding: 5px;
+    padding: 10px;
     flex: 1 1 auto;
     overflow: auto;
   }
 
   :host .metadata-tabs .mdl-card {
     width: auto;
+    min-height: 0;
+    margin-bottom: 15px;
   }
 
   :host .metadata-tabs .mdl-card > .mdl-card__title {}
@@ -48,6 +50,11 @@
     font-size: 14px;
     opacity: .5;
     font-weight: 500;
+  }
+
+  :host .metadata-tabs .mdl-card > .mdl-card__actions {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   :host .metadata-tabs .mdl-card > .mdl-card__menu {
