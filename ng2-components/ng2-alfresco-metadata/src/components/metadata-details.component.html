@@ -1,40 +1,62 @@
 <div class="mdl-card mdl-shadow--2dp metadata-details-card">
   <ul class="mdl-list">
-    <li class="mdl-list__item" *ngIf="node.content">
+    <li class="mdl-list__item mdl-list__item--two-line" *ngIf="node.content">
       <span class="mdl-list__item-primary-content">
-        <span class="mdl-list__item-label">Type</span>
+        <span class="mdl-list__item-sub-title">Type</span>
         <span>{{ node.content.mimeTypeName }}</span>
       </span>
     </li>
 
-    <li class="mdl-list__item" *ngIf="node.isFolder">
-      <span class="mdl-list__item-label">Type</span>
-      <span>Folder</span>
+    <li class="mdl-list__item mdl-list__item--two-line" *ngIf="node.isFolder">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Type</span>
+        <span>Folder</span>
+      </span>
     </li>
 
-    <li class="mdl-list__item" *ngIf="node.content">
-      <span class="mdl-list__item-label">Size</span>
-      <span>{{ node.content.sizeInBytes }} bytes</span>
+    <li class="mdl-list__item mdl-list__item--two-line" *ngIf="node.content">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Size</span>
+        <span>{{ node.content.sizeInBytes }} bytes</span>
+      </span>
     </li>
 
-    <li class="mdl-list__item">
-      <span class="mdl-list__item-label">Location</span>
-      <span>{{ node.path.elements[node.path.elements.length - 1].name }}</span>
+    <li class="mdl-list__item mdl-list__item--two-line">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Location</span>
+        <span>{{ node.path.elements[node.path.elements.length - 1].name }}</span>
+      </span>
     </li>
 
-    <li class="mdl-list__item">
-      <span class="mdl-list__item-label">Owner</span>
-      <span>{{ node.createdByUser.displayName }}</span>
+    <li class="mdl-list__item mdl-list__item--two-line">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Owner</span>
+        <span>{{ node.createdByUser.displayName }}</span>
+      </span>
     </li>
 
-    <li class="mdl-list__item">
-      <span class="mdl-list__item-label">Created</span>
-      <span>{{ node.createdAt }}</span>
+    <li class="mdl-list__item mdl-list__item--two-line">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Created</span>
+        <span>{{ node.createdAt }}</span>
+      </span>
     </li>
 
-    <li class="mdl-list__item">
-      <span class="mdl-list__item-label">Modified</span>
-      <span>{{ node.modifiedAt }} by {{ node.modifiedByUser.displayName }}</span>
+    <li class="mdl-list__item mdl-list__item--two-line">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Modified</span>
+        <span>{{ node.modifiedAt }} by {{ node.modifiedByUser.displayName }}</span>
+      </span>
     </li>
   </ul>
+
+  <div class="mdl-card__actions mdl-card--border">
+    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">star</i>
+    </button>
+
+    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">edit</i>
+    </button>
+  </div>
 </div>

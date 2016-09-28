@@ -1,0 +1,42 @@
+:host .mdl-list {
+  margin: 0;
+}
+
+:host .metadata-comments {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+:host .metadata-comment {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+  :host .metadata-comment > .metadata-comment-body {
+    -webkit-align-items: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start
+  }
+
+    :host .metadata-comment-body > .metadata-comment-content {
+
+    }
+
+    :host .metadata-comment-content > h6 {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    :host .metadata-comment-content > p {
+      margin: 0;
+      line-height: 1.4;
+      color: #777;
+    }
+
+:host .mdl-textfield {
+  width: 100%;
+}
+
+:host .add-comment-form .mdl-textfield {
+  padding: 5px 0;
+}

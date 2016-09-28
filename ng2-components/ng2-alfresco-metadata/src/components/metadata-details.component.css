@@ -1,0 +1,27 @@
+:host .mdl-list {
+  margin: 0;
+  padding: 0;
+}
+
+:host .mdl-list__item {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+:host .mdl-list__item:first-child {
+  margin-top: 10px;
+}
+
+:host .mdl-list__item--two-line,
+:host .mdl-list__item-primary-content {
+  height: auto !important;
+}
+
+:host .mdl-list__item-sub-title {
+  margin-bottom: 3px;
+}
+
+:host .mdl-list__item-sub-title + span {
+  font-size: 14px;
+  line-height: 20px;
+}
