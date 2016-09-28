@@ -116,7 +116,14 @@ import {
             </ng2-alfresco-metadata>
 
             <context-menu-holder></context-menu-holder>
-            <button id="reload-button" (click)="documentList.reload()">Reload!</button>
+
+            <button
+                id="reload-button"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                style="margin:15px;"
+                (click)="documentList.reload()">
+                Load folders!
+            </button>
 
             <!--<metadata-comments
                 [node]="selectedNodeEntry"></metadata-comments>-->
