@@ -54,8 +54,16 @@
     <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
       <i class="material-icons">edit</i>
     </button>
-    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-      <i class="material-icons">expand more</i>
-    </button>
   </div>
 </div>
+
+<dialog class="mdl-dialog" #dialog>
+    <h4 class="mdl-dialog__title">Edit properties</h4>
+    <div class="mdl-dialog__content">
+
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" (click)="save()" class="mdl-button">Save</button>
+        <button type="button" (click)="cancel()" class="mdl-button close">Cancel</button>
+    </div>
+</dialog>

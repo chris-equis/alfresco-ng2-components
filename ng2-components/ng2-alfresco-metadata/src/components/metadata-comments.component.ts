@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { MetadataCommentService } from '../services/metadata-comment-service';
 
 declare let __moduleName: string;
@@ -10,7 +10,7 @@ declare let __moduleName: string;
     styleUrls: [ './metadata-comments.component.css' ],
     providers: [ MetadataCommentService ]
 })
-export class MetadataCommentsComponent implements OnInit {
+export class MetadataCommentsComponent implements OnInit, OnChanges {
     @Input()
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
@@ -18,14 +18,20 @@ export class MetadataCommentsComponent implements OnInit {
     comments:any[] = [];
     comment:string = '';
     loading:boolean = false;
-    
+
     constructor(
         private metadata: MetadataCommentService
     ) {}
 
     ngOnInit() {
         this.loading = true;
+    }
 
+    ngOnChanges(changes) {
+        this.getNodeComments();
+    }
+
+    private getNodeComments() {
         this
             .metadata
             .getNodeComments(this.node.id)

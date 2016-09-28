@@ -205,7 +205,11 @@ class MetadataDemo implements OnInit {
     }
 
     onNodeClick(event?: any) {
-        this.selectedNodeEntry = event.value.entry;
+        let { entry } = event.value;
+
+        if(entry.isFile) {
+            this.selectedNodeEntry = event.value.entry;
+        }
     }
 
     viewDetails(event) {
