@@ -25,27 +25,31 @@ export class MetadataTagService {
 
     constructor(private authService: AlfrescoAuthenticationService) {}
 
+    private get tagsApi() {
+        return this.authService.getAlfrescoApi().core.tagsApi;
+    }
+
     public addTag(nodeId: string, tagBody: string): Observable<Object> {
         return Observable
-            .fromPromise(this.authService.getAlfrescoApi().core.tagsApi.addTag(nodeId, tagBody))
+            .fromPromise(this.tagsApi.addTag(nodeId, tagBody))
             .catch((e: Error) => Observable.of(e));
     }
 
     public getNodeTags(nodeId: string): Observable<Object> {
         return Observable
-            .fromPromise(this.authService.getAlfrescoApi().core.tagsApi.getNodeTags(nodeId))
+            .fromPromise(this.tagsApi.getNodeTags(nodeId))
             .catch((e: Error) => Observable.of(e));
     }
 
     public removeTag(nodeId: string, tagId: string): Observable<Object> {
         return Observable
-            .fromPromise(this.authService.getAlfrescoApi().core.tagsApi.removeTag(nodeId, tagId))
+            .fromPromise(this.tagsApi.removeTag(nodeId, tagId))
             .catch((e: Error) => Observable.of(e));
     }
 
     public updateTag(tagId: string, tagBody: string): Observable<Object> {
         return Observable
-            .fromPromise(this.authService.getAlfrescoApi().core.tagsApi.updateTag(tagId, tagBody))
+            .fromPromise(this.tagsApi.updateTag(tagId, tagBody))
             .catch((e: Error) => Observable.of(e));
     }
 }
