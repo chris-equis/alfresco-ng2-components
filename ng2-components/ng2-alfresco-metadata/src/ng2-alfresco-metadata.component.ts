@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, OnChanges, Injectable } from '@angular/core';
-import { AlfrescoAuthenticationService } from 'ng2-alfresco-core';
 import { Observable } from 'rxjs/Rx';
 
 import {
@@ -8,10 +7,6 @@ import {
     MetadataDetailsComponent,
     MetadataTagsComponent
 } from './components/metadata-components';
-
-import {
-    MetadataService
-} from './ng2-alfresco-metadata.service';
 
 console.log(MetadataCommentsComponent);
 
@@ -28,9 +23,6 @@ declare let __moduleName: string;
         MetadataCommentsComponent,
         MetadataDetailsComponent,
         MetadataTagsComponent
-    ],
-    providers: [
-        MetadataService
     ]
 })
 export class Ng2AlfrescoMetadataComponent implements OnInit, OnChanges {
@@ -40,7 +32,7 @@ export class Ng2AlfrescoMetadataComponent implements OnInit, OnChanges {
 
     loaded: boolean = false;
 
-    constructor(private metadataService: MetadataService) {
+    constructor() {
         console.log('Is it me?', this);
     }
 

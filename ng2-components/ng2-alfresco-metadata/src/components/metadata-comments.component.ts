@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MetadataService } from '../ng2-alfresco-metadata.service';
+import { MetadataCommentService } from '../services/metadata-comment-service';
 
 declare let __moduleName: string;
 
@@ -8,19 +8,19 @@ declare let __moduleName: string;
     selector: 'metadata-comments',
     templateUrl: './metadata-comments.component.html',
     styleUrls: [ './metadata-comments.component.css' ],
-    providers: [ MetadataService ]
+    providers: [ MetadataCommentService ]
 })
 export class MetadataCommentsComponent implements OnInit {
     @Input()
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
 
-    comments: any[] = [];
-    comment: string = '';
-    loading: boolean = false;
+    comments:any[] = [];
+    comment:string = '';
+    loading:boolean = false;
     
     constructor(
-        private metadata: MetadataService
+        private metadata: MetadataCommentService
     ) {}
 
     ngOnInit() {

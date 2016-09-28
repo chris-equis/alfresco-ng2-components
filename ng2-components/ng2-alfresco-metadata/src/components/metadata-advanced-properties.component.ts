@@ -5,7 +5,7 @@ declare let __moduleName: string;
 @Component({
     moduleId: __moduleName,
     selector: 'metadata-advanced-properties',
-    templateUrl: './metadata-advanced-properties.component.html'//,
+    templateUrl: './metadata-advanced-properties.component.html'// ,
     // styleUrls: ['./metadata-advanced-properties.component.css']
 })
 export class MetadataAdvancedPropertiesComponent {
