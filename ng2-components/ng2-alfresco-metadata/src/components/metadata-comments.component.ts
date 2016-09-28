@@ -39,11 +39,24 @@ export class MetadataCommentsComponent implements OnInit {
             })
     }
 
-    addComment() {
-        this.ngOnInit();
+    saveComment() {
+        this.loading = true;
+
+        this
+            .metadata
+            .addComment(this.node.id, this.comment)
+            .finally(() => {
+                this.loading = false;
+            })
+            .subscribe((result:any) => {
+                this.comments.push(result);
+                this.clearComment();
+            }, error => {
+
+            })
     }
 
-    resetComment() {
+    clearComment() {
         this.comment = '';
     }
 }

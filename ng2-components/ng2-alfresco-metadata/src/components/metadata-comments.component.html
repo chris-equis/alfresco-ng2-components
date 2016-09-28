@@ -41,14 +41,15 @@
 
       <div *ngIf="comment">
         <button
-          class="mdl-button mdl-js-button mdl-js-ripple-effect"
-          (click)="resetComment()">
-          Cancel
+          class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+          (click)="clearComment()">
+          <i class="material-icons">clear</i>
         </button>
+
         <button
-          class="mdl-button mdl-js-button mdl-js-ripple-effect"
-          (click)="addComment()">
-          Add
+          class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+          (click)="saveComment()">
+          <i class="material-icons">done</i>
         </button>
       </div>
     </form>

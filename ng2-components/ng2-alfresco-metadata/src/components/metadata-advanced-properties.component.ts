@@ -14,6 +14,5 @@ export class MetadataAdvancedPropertiesComponent {
     // could import "MinimalNodeEntity" from "documentlist" component
 
     constructor() {
-        console.log('constructed');
     }
 }

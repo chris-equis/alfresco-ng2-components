@@ -25,3 +25,11 @@
   font-size: 14px;
   line-height: 20px;
 }
+
+:host .fav-icon {
+  color: #aaa;
+}
+
+:host .fav-icon.fav-icon-active {
+  color: #fb8c00;
+}

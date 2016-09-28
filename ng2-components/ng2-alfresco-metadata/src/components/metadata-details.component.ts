@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 declare let __moduleName: string;
 
@@ -8,12 +8,16 @@ declare let __moduleName: string;
     templateUrl: './metadata-details.component.html',
     styleUrls: ['./metadata-details.component.css']
 })
-export class MetadataDetailsComponent {
+export class MetadataDetailsComponent implements OnInit {
     @Input()
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
 
     constructor() {
-        console.log('constructed');
+      
+    }
+
+    ngOnInit() {
+      console.log(this.node);
     }
 }

@@ -10,11 +10,11 @@
     *ngIf="loading"></div>
 
   <div class="mdl-card__actions mdl-card--border">
-    <p *ngIf="!tags.length">No tags, yet!</p>
+    <p *ngIf="!tags.length && !editing">No tags, yet!</p>
 
     <span
       class="mdl-chip tag-item"
-      *ngIf="tags.length"
+      *ngIf="!!(tags.length && tag)"
       *ngFor="let tag of tags"
       [hidden]="editing">
       <span class="mdl-chip__text">{{ tag }}</span>
@@ -31,21 +31,26 @@
     </form>
   </div>
 
-
-
-  <div class="mdl-card__menu">
+  <div class="mdl-card__menu" *ngIf="editing">
     <button
       class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
-      *ngIf="!editing"
-      (click)="editing = true">
-      <i class="material-icons">edit</i>
+      (click)="ngOnInit()">
+      <i class="material-icons">undo</i>
     </button>
 
     <button
-      class="mdl-button mdl-js-button mdl-js-ripple-effect"
-      *ngIf="editing"
+      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
       (click)="editing = false">
-      Save
+      <i class="material-icons">done</i>
+    </button>
+  </div>
+
+  <div class="mdl-card__menu" *ngIf="!editing">
+    <button
+      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+      
+      (click)="editing = true">
+      <i class="material-icons">edit</i>
     </button>
   </div>
 </div>
