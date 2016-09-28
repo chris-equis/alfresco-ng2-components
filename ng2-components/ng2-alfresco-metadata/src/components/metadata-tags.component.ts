@@ -44,9 +44,8 @@ export class MetadataTagsComponent implements OnInit {
             .finally(() => {
                 this.loading = false;
             })
-            .subscribe((result:Object) => {
-                // this.tags = result.list.entries;
-                this.tags = ['Design', 'Flow chart', 'Activiti'];
+            .subscribe((result:any) => {
+                this.tags = result.list.entries;
             }, error => {
                 this.tags = [];
             })

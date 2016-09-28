@@ -15,10 +15,10 @@ export class MetadataCommentsComponent implements OnInit {
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
 
-    comments: Object[] = [];
-    loading: boolean = false;
+    comments: any[] = [];
     comment: string = '';
-
+    loading: boolean = false;
+    
     constructor(
         private metadata: MetadataService
     ) {}
@@ -32,7 +32,7 @@ export class MetadataCommentsComponent implements OnInit {
             .finally(() => {
                 this.loading = false;
             })
-            .subscribe((result:Object) => {
+            .subscribe((result:any) => {
                 this.comments = result.list.entries;
             }, error => {
                 this.comments = [];
