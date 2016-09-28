@@ -15,17 +15,13 @@ export class MetadataCommentsComponent implements OnInit {
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
 
-    comments: Object[];
-    loading: boolean;
-    content: string;
+    comments: Object[] = [];
+    loading: boolean = false;
+    comment: string = '';
 
     constructor(
         private metadata: MetadataService
-    ) {
-        this.loading = true;
-        this.comments = [];
-        this.comment = '';
-    }
+    ) {}
 
     ngOnInit() {
         this.loading = true;
@@ -38,7 +34,6 @@ export class MetadataCommentsComponent implements OnInit {
             })
             .subscribe((result:Object) => {
                 this.comments = result.list.entries;
-                console.log(this.comments);
             }, error => {
                 this.comments = [];
             })

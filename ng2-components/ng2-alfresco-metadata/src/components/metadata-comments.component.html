@@ -38,17 +38,16 @@
           placeholder="Add a comment"
           [(ngModel)]="comment"></textarea>
       </div>
-      <div>
+
+      <div *ngIf="comment">
         <button
           class="mdl-button mdl-js-button mdl-js-ripple-effect"
-          (click)="resetComment()"
-          [disabled]="!comment">
+          (click)="resetComment()">
           Cancel
         </button>
         <button
           class="mdl-button mdl-js-button mdl-js-ripple-effect"
-          (click)="addComment()"
-          [disabled]="!comment">
+          (click)="addComment()">
           Add
         </button>
       </div>
