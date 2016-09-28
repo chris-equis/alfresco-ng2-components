@@ -1,0 +1,52 @@
+/* MDL Card Extension */
+:host .mdl-card {
+  width: auto;
+  min-height: 0;
+  margin-bottom: 15px;
+}
+
+:host .mdl-card > .mdl-card__title > .mdl-card__title-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #888;
+}
+
+:host .mdl-card > .mdl-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+:host .mdl-card > .mdl-card__content,
+:host .mdl-card > .mdl-card__actions {
+  border-top: 1px solid rgba(0,0,0,.1);
+  padding: 16px;
+}
+
+  :host .mdl-card__content > .mdl-list {
+    margin: -16px;
+  }
+
+  :host .mdl-card > .mdl-card__actions {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  :host .mdl-card > .mdl-card__actions.mdl-grid {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+:host .mdl-card > .mdl-card__menu {
+  top: 10px;
+  right: 16px;
+}
+
+:host .mdl-card__actions .mdl-textfield {
+  width: 100%;
+}
+
+:host .mdl-textfield + .mdl-button-group {
+  padding: 0 0 10px;
+}

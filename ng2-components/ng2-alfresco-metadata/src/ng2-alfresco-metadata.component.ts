@@ -14,7 +14,10 @@ declare let __moduleName: string;
     moduleId: __moduleName,
     selector: 'ng2-alfresco-metadata',
     templateUrl: './ng2-alfresco-metadata.component.html',
-    styleUrls: ['./ng2-alfresco-metadata.component.css'],
+    styleUrls: [
+        './ng2-alfresco-metadata.component.css',
+        './ng2-alfresco-metadata.mdl-card.css'
+    ],
     directives: [
         MetadataAdvancedPropertiesComponent,
         MetadataCommentsComponent,
@@ -32,3 +35,5 @@ export class Ng2AlfrescoMetadataComponent implements OnInit, OnChanges {
     constructor() {
     }
 }
+
+export * from './components/metadata-components';

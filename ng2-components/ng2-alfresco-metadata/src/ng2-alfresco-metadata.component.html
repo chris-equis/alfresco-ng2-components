@@ -1,9 +1,15 @@
-<div class="metadata" *ngIf="!!node">
-  <div class="metadata-title">
+<div
+  class="metadata"
+  [ngClass]="{ 'metadata--active': node }">
+  <div
+    class="metadata-title"
+    *ngIf="node">
       <h5>{{ node.name }}</h5>
   </div>
 
-  <div class="metadata-tabs mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  <div
+    class="metadata-tabs mdl-tabs mdl-js-tabs mdl-js-ripple-effect"
+    *ngIf="node">
     <div class="mdl-tabs__tab-bar">
       <a href="#metadata-details-tab-content" class="mdl-tabs__tab is-active">Details</a>
       <a href="#metadata-activity-tab-content" class="mdl-tabs__tab">Activity</a>

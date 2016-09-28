@@ -1,13 +1,19 @@
 :host > .metadata {
   position: fixed;
   top: 0;
-  right: 0;
+  right: -400px;
   bottom: 0;
   background: #eee;
   border: 1px solid rgba(0,0,0, .12);
   width: 400px;
   display: flex;
   flex-flow: column;
+  -webkit-transition: right .3s;
+  transition: right .3s;
+}
+
+:host > .metadata.metadata--active {
+  right: 0;
 }
 
 :host > .metadata > .metadata-title {
@@ -39,32 +45,32 @@
     overflow: auto;
   }
 
-  :host .metadata-tabs .mdl-card {
-    width: auto;
-    min-height: 0;
-    margin-bottom: 15px;
-  }
+//   :host .metadata-tabs .mdl-card {
+//     width: auto;
+//     min-height: 0;
+//     margin-bottom: 15px;
+//   }
 
-  :host .metadata-tabs .mdl-card > .mdl-card__title {}
-  :host .metadata-tabs .mdl-card > .mdl-card__title > .mdl-card__title-text {
-    font-size: 14px;
-    opacity: .5;
-    font-weight: 500;
-  }
+//   :host .metadata-tabs .mdl-card > .mdl-card__title {}
+//   :host .metadata-tabs .mdl-card > .mdl-card__title > .mdl-card__title-text {
+//     font-size: 14px;
+//     opacity: .5;
+//     font-weight: 500;
+//   }
 
-  :host .metadata-tabs .mdl-card > .mdl-card__actions {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
+//   :host .metadata-tabs .mdl-card > .mdl-card__actions {
+//     padding-left: 16px;
+//     padding-right: 16px;
+//   }
 
-  :host .metadata-tabs .mdl-card > .mdl-card__menu {
-    top: 10px;
-  }
+//   :host .metadata-tabs .mdl-card > .mdl-card__menu {
+//     top: 10px;
+//   }
 
 
-:host .mdl-list__item-primary-content {
+// :host .mdl-list__item-primary-content {
 
-}
+// }
 
   :host .mdl-list__item-primary-content > .mdl-list__item-label {
     display: block;
