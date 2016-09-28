@@ -5,23 +5,44 @@
     </div>
   </div>
 
+  <div
+    class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
+    *ngIf="loading"></div>
+
   <div class="mdl-card__actions mdl-card--border">
-    <span class="mdl-chip">
-      <span class="mdl-chip__text">Design</span>
+    <span
+      class="mdl-chip tag-item"
+      *ngFor="let tag of tags"
+      [hidden]="editing">
+      <span class="mdl-chip__text">{{ tag }}</span>
     </span>
 
-    <span class="mdl-chip">
-      <span class="mdl-chip__text">Flow chart</span>
-    </span>
-
-    <span class="mdl-chip">
-      <span class="mdl-chip__text">Activiti</span>
-    </span>
+    <form action="#" [hidden]="!editing" class="tag-edit-form">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input
+          class="mdl-textfield__input"
+          type="text"
+          placeholder="Comma separated tags"
+          [(ngModel)]="commaSeparatedTags">
+      </div>
+    </form>
   </div>
 
+
+
   <div class="mdl-card__menu">
-    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+    <button
+      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+      *ngIf="!editing"
+      (click)="editing = true">
       <i class="material-icons">edit</i>
+    </button>
+
+    <button
+      class="mdl-button mdl-js-button mdl-js-ripple-effect"
+      *ngIf="editing"
+      (click)="editing = false">
+      Save
     </button>
   </div>
 </div>
