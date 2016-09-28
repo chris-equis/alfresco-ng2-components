@@ -35,7 +35,8 @@ import {
 } from 'ng2-alfresco-documentlist';
 
 import {
-    Ng2AlfrescoMetadataComponent
+    Ng2AlfrescoMetadataComponent,
+    MetadataCommentsComponent
 } from 'ng2-alfresco-metadata';
 
 @Component({
@@ -44,7 +45,8 @@ import {
     directives: [
         DOCUMENT_LIST_DIRECTIVES,
         CONTEXT_MENU_DIRECTIVES,
-        Ng2AlfrescoMetadataComponent
+        Ng2AlfrescoMetadataComponent,
+        MetadataCommentsComponent
     ],
     providers: [DOCUMENT_LIST_PROVIDERS],
     pipes: [AlfrescoPipeTranslate],
@@ -65,20 +67,6 @@ import {
                             key="name"
                             sortable="true"
                             class="full-width ellipsis-cell">
-                    </content-column>
-                    <content-column
-                            title="{{'DOCUMENT_LIST.COLUMNS.CREATED_BY' | translate}}"
-                            key="createdByUser.displayName"
-                            sortable="true"
-                            class="desktop-only">
-                    </content-column>
-                    <content-column
-                            title="{{'DOCUMENT_LIST.COLUMNS.CREATED_ON' | translate}}"
-                            key="createdAt"
-                            type="date"
-                            format="medium"
-                            sortable="true"
-                            class="desktop-only">
                     </content-column>
                 </content-columns>
                 <content-actions>
@@ -128,7 +116,10 @@ import {
             </ng2-alfresco-metadata>
 
             <context-menu-holder></context-menu-holder>
-            <button id="reload-button" (click)="documentList.reload()">Reload</button>
+            <button id="reload-button" (click)="documentList.reload()">Reload!</button>
+
+            <!--<metadata-comments
+                [node]="selectedNodeEntry"></metadata-comments>-->
         </div>
     `
 })
@@ -207,9 +198,7 @@ class MetadataDemo implements OnInit {
     onNodeClick(event?: any) {
         let { entry } = event.value;
 
-        if(entry.isFile) {
-            this.selectedNodeEntry = event.value.entry;
-        }
+        this.selectedNodeEntry = event.value.entry;
     }
 
     viewDetails(event) {
