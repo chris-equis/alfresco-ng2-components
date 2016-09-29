@@ -38,14 +38,14 @@
     <li class="mdl-list__item mdl-list__item--two-line">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Created</span>
-        <span>{{ node.createdAt }}</span>
+        <span>{{ node.createdAt | date }}</span>
       </span>
     </li>
 
     <li class="mdl-list__item mdl-list__item--two-line">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Modified</span>
-        <span>{{ node.modifiedAt }} by {{ node.modifiedByUser.displayName }}</span>
+        <span>{{ node.modifiedAt | date }} by {{ node.modifiedByUser.displayName }}</span>
       </span>
     </li>
   </ul>
