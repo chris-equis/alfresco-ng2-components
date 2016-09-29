@@ -44,6 +44,7 @@
   right: 16px;
 }
 
+:host .mdl-card__content .mdl-textfield,
 :host .mdl-card__actions .mdl-textfield {
   width: 100%;
   padding: 10px 0;
