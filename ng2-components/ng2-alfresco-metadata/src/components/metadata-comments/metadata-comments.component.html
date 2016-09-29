@@ -22,9 +22,17 @@
         <div class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-avatar">person</i>
           <div class="alf-comments__comment-body">
-            <span class="alf-comments__comment-author">{{ comment.entry.createdBy.firstName }}</span>
-            <span class="alf-comments__comment-content">{{ comment.entry.content }}</span>
-            <span class="alf-comments__comment-timestamp">{{ comment.entry.createdAt }}</span>              
+            <span class="alf-comments__comment-author">
+              {{ comment.entry.createdBy.firstName }}
+            </span>
+
+            <span class="alf-comments__comment-content">
+              {{ comment.entry.content }}
+            </span>
+
+            <span class="alf-comments__comment-timestamp">
+              {{ comment.entry.createdAt | date }}
+            </span>
           </div>
         </div>
       </div>

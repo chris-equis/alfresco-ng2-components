@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { MetadataTagService } from '../services/metadata-tag-service';
+import { MetadataTagService } from './metadata-tags.service';
 
 declare let __moduleName: string;
 

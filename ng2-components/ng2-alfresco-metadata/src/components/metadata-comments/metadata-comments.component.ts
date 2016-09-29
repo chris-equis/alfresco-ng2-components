@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { MetadataCommentService } from '../services/metadata-comment-service';
+import { MetadataCommentService } from './metadata-comments.service';
 
 declare let __moduleName: string;
 

@@ -26,7 +26,7 @@ declare let __moduleName: string;
         MetadataTagsComponent
     ]
 })
-export class Ng2AlfrescoMetadataComponent implements OnInit, OnChanges {
+export class Ng2AlfrescoMetadataComponent {
     @Input()
     node: Observable<any>;
     // could import "MinimalNodeEntity" from "documentlist" component
