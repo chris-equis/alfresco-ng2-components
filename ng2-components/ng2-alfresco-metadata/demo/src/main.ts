@@ -122,7 +122,16 @@ import {
                 class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
                 style="margin:15px;"
                 (click)="documentList.reload()">
-                Load folders!
+                Load folders
+            </button>
+
+            <button
+                id="reload-button"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                style="margin:15px;"
+                (click)="closeMetadata()"
+                [disabled]="!selectedNodeEntry">
+                Close metadata
             </button>
 
             <!--<metadata-comments
@@ -210,6 +219,10 @@ class MetadataDemo implements OnInit {
 
     viewDetails(event) {
         console.log(event);
+    }
+
+    closeMetadata() {
+        this.selectedNodeEntry = null;
     }
 }
 
