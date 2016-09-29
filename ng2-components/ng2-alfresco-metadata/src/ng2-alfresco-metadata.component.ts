@@ -16,7 +16,8 @@ declare let __moduleName: string;
     templateUrl: './ng2-alfresco-metadata.component.html',
     styleUrls: [
         './ng2-alfresco-metadata.component.css',
-        './ng2-alfresco-metadata.mdl-card.css'
+        './ng2-alfresco-metadata.mdl-card.css',
+        './ng2-alfresco-metadata.mdl-list.css'
     ],
     directives: [
         MetadataAdvancedPropertiesComponent,

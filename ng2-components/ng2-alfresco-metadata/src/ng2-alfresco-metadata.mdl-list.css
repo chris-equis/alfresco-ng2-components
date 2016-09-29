@@ -1,0 +1,9 @@
+/* MDL List Extension */
+:host .mdl-list {
+  
+}
+
+  :host .mdl-list > .mdl-list__item {
+    font-family: sans-serif;
+    letter-spacing: 0;
+  }
