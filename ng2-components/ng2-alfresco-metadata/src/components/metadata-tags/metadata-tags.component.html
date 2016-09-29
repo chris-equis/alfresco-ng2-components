@@ -10,51 +10,63 @@
     </div>
   </div>
 
-  <div class="mdl-card__content" *ngIf="!tags.length && !editing">
-    <p>No tags, yet!</p>
+  <div class="mdl-card__menu">
+    <button
+      type="button"
+      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+      (click)="startEditing()"
+      [disabled]="editing">
+      <i class="material-icons">edit</i>
+    </button>
   </div>
 
-  <div class="mdl-card__content" *ngIf="tags.length && !editing">
+  <div class="mdl-card__content">
+    <p *ngIf="!tags.length && !editing">No tags, yet!</p>
+
     <span
+      id="metadata-tag-{{ tagObject.entry.id }}"
       class="mdl-chip tag-item"
-      *ngFor="let tag of tags"
-      [hidden]="editing">
-      <span class="mdl-chip__text">{{ tag }}</span>
-    </span>
-  </div>
+      *ngFor="let tagObject of tags"
+      [ngClass]="{ 'mdl-chip--deletable': editing }">
+      
+      <span class="mdl-chip__text">
+        {{ tagObject.entry.tag }}
+      </span>
 
-  <div class="mdl-card__actions" *ngIf="editing">
-    <form action="#">
+      <button
+        type="button"
+        class="mdl-chip__action"
+        (click)="removeTag(tagObject.entry.id)"
+        [hidden]="!editing">
+        <i class="material-icons">cancel</i>
+      </button>
+    </span>
+  
+    <form action="#" *ngIf="editing">
       <div class="mdl-textfield mdl-js-textfield">
         <input
           class="mdl-textfield__input"
           type="text"
-          placeholder="Comma separated tags"
-          [(ngModel)]="commaSeparatedTags">
+          placeholder="Add a new tag"
+          [(ngModel)]="newTagValue">
       </div>
 
       <div class="mdl-button-group">
         <button
+          type="button"
           class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
-          (click)="ngOnInit()">
-          <i class="material-icons">undo</i>
+          (click)="cancelEditing()">
+          <i class="material-icons">clear</i>
         </button>
 
         <button
+          type="button"
           class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
-          (click)="editing = false">
+          (click)="addTag(newTagValue)"
+          [disabled]="!newTagValue">
           <i class="material-icons">done</i>
         </button>    
       </div>
     </form>
-  </div>
-
-  <div class="mdl-card__menu">
-    <button
-      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
-      (click)="editing = true"
-      [disabled]="editing">
-      <i class="material-icons">edit</i>
-    </button>
   </div>
 </div>

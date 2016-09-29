@@ -23,15 +23,17 @@ import {AlfrescoAuthenticationService} from 'ng2-alfresco-core';
 @Injectable()
 export class MetadataTagService {
 
-    constructor(private authService: AlfrescoAuthenticationService) {}
+    constructor(private authService: AlfrescoAuthenticationService) {
+        console.log(this.tagsApi);
+    }
 
     private get tagsApi() {
         return this.authService.getAlfrescoApi().core.tagsApi;
     }
 
-    public addTag(nodeId: string, tagBody: string): Observable<Object> {
+    public addTag(nodeId: string, tag: string): Observable<Object> {
         return Observable
-            .fromPromise(this.tagsApi.addTag(nodeId, tagBody))
+            .fromPromise(this.tagsApi.addTag(nodeId, { tag }))
             .catch((e: Error) => Observable.of(e));
     }
 

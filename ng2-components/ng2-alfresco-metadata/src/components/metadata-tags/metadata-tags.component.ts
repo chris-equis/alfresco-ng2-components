@@ -18,28 +18,19 @@ export class MetadataTagsComponent implements OnChanges {
     tags:string[] = [];
     loading:boolean = false;
     editing:boolean = false;
+    newTagValue:string = '';
 
     constructor(
-        private metadata: MetadataTagService
+        private MetadataTagService: MetadataTagService
     ) {
 
-    }
-
-    get commaSeparatedTags() {
-        return this.tags.join(', ');
-    }
-
-    set commaSeparatedTags(value:string) {
-        this.tags = value.split(',')
-            .map((tag:string):string => tag.trim())
-            .filter((tag:string):boolean => !!tag);
     }
 
     loadTags() {
         this.loading = true;
 
         this
-            .metadata
+            .MetadataTagService
             .getNodeTags(this.node.id)
             .finally(() => {
                 this.loading = false;
@@ -49,6 +40,37 @@ export class MetadataTagsComponent implements OnChanges {
             }, error => {
                 this.tags = [];
             })
+    }
+
+    addTag() {
+        if (this.newTagValue) {
+            this.loading = true;
+            this.MetadataTagService.addTag(this.node.id, this.newTagValue)
+                .finally(() => {
+                    this.loading = false;
+                    this.newTagValue = '';
+                })
+                .subscribe((result:any) => {
+                    this.loadTags();
+                }, error => {});
+        }
+    }
+
+    removeTag(tagId: string) {
+        this.loading = true;
+        this.MetadataTagService.removeTag(this.node.id, tagId)
+            .finally(() => {
+                this.loading = false;
+            })
+            .subscribe(() => this.loadTags(), error => {});
+    }
+
+    startEditing() {
+        this.editing = true;
+    }
+
+    cancelEditing() {
+        this.editing = false;
     }
 
     ngOnChanges(changes) {
