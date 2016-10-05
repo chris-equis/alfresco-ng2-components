@@ -24,7 +24,6 @@ import {AlfrescoAuthenticationService} from 'ng2-alfresco-core';
 export class MetadataTagService {
 
     constructor(private authService: AlfrescoAuthenticationService) {
-        console.log(this.tagsApi);
     }
 
     private get tagsApi() {
