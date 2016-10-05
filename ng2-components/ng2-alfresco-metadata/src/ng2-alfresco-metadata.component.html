@@ -11,25 +11,32 @@
     class="metadata-tabs mdl-tabs mdl-js-tabs mdl-js-ripple-effect"
     *ngIf="node">
     <div class="mdl-tabs__tab-bar">
-      <a href="#metadata-details-tab-content" class="mdl-tabs__tab is-active">Details</a>
-      <a href="#metadata-activity-tab-content" class="mdl-tabs__tab">Activity</a>
+      <a href="#metadata-details-tab-content" class="mdl-tabs__tab">Details</a>
+      <a href="#metadata-activity-tab-content" class="mdl-tabs__tab is-active">Activity</a>
       <a href="#metadata-sharing-tab-content" class="mdl-tabs__tab">Sharing</a>
     </div>
 
-    <div class="mdl-tabs__panel is-active" id="metadata-details-tab-content">
+    <div class="mdl-tabs__panel" id="metadata-details-tab-content">
       <metadata-details [node]="node"></metadata-details>
       <metadata-advanced-properties [node]="node"></metadata-advanced-properties>
       <metadata-comments [node]="node"></metadata-comments>
       <metadata-tags [node]="node"></metadata-tags>
     </div>
 
-    <div class="mdl-tabs__panel" id="metadata-activity-tab-content">
+    <div class="mdl-tabs__panel is-active" id="metadata-activity-tab-content">
       <p>Tab 2 Content</p>
+      <button class="mdl-button" (click)="openEditPanel()">
+        Edit it!
+      </button>
     </div>
 
     <div class="mdl-tabs__panel" id="metadata-sharing-tab-content">
       <p>Tab 3 Content</p>
     </div>
   </div>
+
+  <metadata-edit-panel #editPanel>
+    Custom content
+  </metadata-edit-panel>
 </div>
   
