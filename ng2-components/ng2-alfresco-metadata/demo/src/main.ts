@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { HTTP_PROVIDERS } from '@angular/http';
 
@@ -111,9 +111,7 @@ import {
                 </content-actions>
             </alfresco-document-list>
 
-            <ng2-alfresco-metadata
-                [node]="selectedNodeEntry">
-            </ng2-alfresco-metadata>
+            <ng2-alfresco-metadata #metadata></ng2-alfresco-metadata>
 
             <context-menu-holder></context-menu-holder>
 
@@ -130,12 +128,9 @@ import {
                 class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
                 style="margin:15px;"
                 (click)="closeMetadata()"
-                [disabled]="!selectedNodeEntry">
+                [disabled]="!metadata.isActive">
                 Close metadata
             </button>
-
-            <!--<metadata-comments
-                [node]="selectedNodeEntry"></metadata-comments>-->
         </div>
     `
 })
@@ -149,12 +144,16 @@ class MetadataDemo implements OnInit {
 
     ticket: string;
 
+    @ViewChild('metadata')
+    metadata: Ng2AlfrescoMetadataComponent;
+
+
     constructor(
         private authService: AlfrescoAuthenticationService,
         private settingsService: AlfrescoSettingsService,
-        translation: AlfrescoTranslationService,
         private documentActions: DocumentActionsService,
-        private element: ElementRef
+        private element: ElementRef,
+        public translation: AlfrescoTranslationService
     ) {
         settingsService.ecmHost = this.ecmHost;
         settingsService.setProviders('ECM');
@@ -214,15 +213,19 @@ class MetadataDemo implements OnInit {
     onNodeClick(event?: any) {
         const { entry: node } = event.value;
 
-        this.selectedNodeEntry = node;
+        this.openMedata(node);
     }
 
     viewDetails(event) {
         console.log(event);
     }
 
+    openMedata(node: any) {
+        this.metadata.open(node);
+    }
+
     closeMetadata() {
-        this.selectedNodeEntry = null;
+        this.metadata.close();
     }
 }
 

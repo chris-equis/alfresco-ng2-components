@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import {
     MetadataAdvancedPropertiesComponent,
     MetadataCommentsComponent,
     MetadataDetailsComponent,
-    MetadataTagsComponent
+    MetadataTagsComponent,
+    MetadataEditPanelComponent
 } from './components/metadata-components';
 
 declare let __moduleName: string;
@@ -23,17 +24,30 @@ declare let __moduleName: string;
         MetadataAdvancedPropertiesComponent,
         MetadataCommentsComponent,
         MetadataDetailsComponent,
-        MetadataTagsComponent
+        MetadataTagsComponent,
+        MetadataEditPanelComponent
     ]
 })
 export class Ng2AlfrescoMetadataComponent {
-    @Input()
-    node: Observable<any>;
-    // could import "MinimalNodeEntity" from "documentlist" component
+    @ViewChild('editPanel')
+    editPanel: MetadataEditPanelComponent;
 
-    loaded: boolean = false;
+    node: any = null;
 
-    constructor() {
+    get isActive():boolean {
+        return !!this.node;
+    }
+
+    open(node: any) {
+        this.node = node;
+    }
+
+    close() {
+        this.node = null;
+    }
+
+    openEditPanel() {
+        this.editPanel.open('The title of the panel!!!');
     }
 }
 
