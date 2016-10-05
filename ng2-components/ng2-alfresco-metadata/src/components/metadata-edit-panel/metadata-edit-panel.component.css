@@ -1,0 +1,52 @@
+:host * {
+  box-sizing: border-box;
+}
+
+:host .alf-edit {
+  width: 420px;
+  background: #fff;
+  padding: 24px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  right: -450px;
+  -webkit-transition: right .3s;
+  transition: right .3s;
+  z-index: 2;
+}
+  :host .alf-edit.alf-edit--active {
+    right: 20px;
+  }
+
+:host .alf-edit__header,
+:host .alf-edit__sub-header{
+  display: flex;
+  margin-bottom: 15px;
+}
+
+:host .alf-edit__title {
+  font-size: 18px;
+  font-weight: 500;
+  flex-grow: 0;
+  line-height: 32px;
+}
+
+:host .alf-edit__actions {
+  text-align: right;
+  flex-grow: 1;
+}
+
+:host .alf-edit__sub-header {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+:host .alf-edit__sub-title {
+  color: #aaa;
+}
+
+:host .alf-edit__content {}
+
+:host .alf-edit__content .mdl-textfield {
+  width: 100%;
+}

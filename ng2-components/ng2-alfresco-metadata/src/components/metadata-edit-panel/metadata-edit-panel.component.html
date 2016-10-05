@@ -1,0 +1,30 @@
+<div
+  class="alf-edit mdl-shadow--8dp"
+  [ngClass]="{ 'alf-edit--active': active }">
+  <div class="alf-edit__header">
+    <div class="alf-edit__title">
+      {{ title }}
+    </div>
+    <div class="alf-edit__actions">
+      <button
+        class="mdl-button mdl-js-button mdl-js-ripple-effect"
+        (click)="close()">
+        Cancel
+      </button>
+      <button
+        class="mdl-button mdl-js-button mdl-js-ripple-effect">
+        Save
+      </button>
+    </div>      
+  </div>
+  
+  <div class="alf-edit__sub-header">
+    <div class="alf-edit__sub-title">
+      Dublin core
+    </div>
+  </div>
+  
+  <div class="alf-edit__content">
+    <ng-content></ng-content>
+  </div>
+</div>
