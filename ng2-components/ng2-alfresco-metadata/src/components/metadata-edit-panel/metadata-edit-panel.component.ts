@@ -1,4 +1,14 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    ComponentResolver,
+    ViewContainerRef,
+    ComponentFactory,
+    ViewChild
+} from '@angular/core';
+
+import {
+    MetadataDetailsEditComponent
+} from '../metadata-details/metadata-details-edit.component';
 
 declare let __moduleName:string;
 
@@ -12,8 +22,18 @@ declare let __moduleName:string;
     directives: []
 })
 export class MetadataEditPanelComponent {
+    private @ViewChild('panelContent', { read: ViewContainerRef }) panelContent;
+    model:any;
     active:boolean = false;
     title:string = 'No title';
+
+    constructor(private resolver:ComponentResolver) {
+        resolver
+            .resolveComponent(MetadataDetailsEditComponent)
+            .then((factory:ComponentFactory<any>) => {
+                this.panelContent = this.panelContent.createComponent(factory);
+            })
+    }
 
     open(title:string) {
         this.title = title;
@@ -23,4 +43,16 @@ export class MetadataEditPanelComponent {
     close() {
         this.active = false;
     }
+
+    // private createPanelContent(): any {
+    //     @Component({
+    //         selector: 'panel-content',
+    //         template: '<div>{{ title }}</div>'
+    //     })
+    //     class PanelContent {
+    //         title:string = 'Wow!';
+    //     }
+
+    //     return PanelContent;
+    // }
 }
