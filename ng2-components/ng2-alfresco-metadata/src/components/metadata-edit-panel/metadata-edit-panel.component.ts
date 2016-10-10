@@ -3,34 +3,15 @@ import {
     ComponentResolver,
     ViewContainerRef,
     ComponentFactory,
-    ViewChild
+    ViewChild,
+    ReflectiveInjector,
+    Injector
 } from '@angular/core';
 
 import { EditPanelService } from './metadata-edit-panel.service';
+import { PanelReference, NgbActiveModal, ContentRef } from './metadata-edit-panel-context';
 
 declare let __moduleName:string;
-
-class PanelRef {
-  private _resolve: (result?: any) => void;
-  private _reject: (reason?: any) => void;
-
-  result: Promise<any>;
-
-  constructor() {
-    this.result = new Promise((resolve, reject) => {
-      this._resolve = resolve;
-      this._reject = reject;
-    });
-  }
-
-  close(result?: any) {
-      this._resolve(result);
-  }
-
-  dismiss(reason?: any) {
-      this._reject(reason);
-  }
-}
 
 @Component({
     moduleId: __moduleName,
@@ -46,31 +27,32 @@ export class MetadataEditPanelComponent {
     @ViewChild('panelContent', { read: ViewContainerRef }) panelContent;
     active:boolean = false;
     title:string = 'No title';
-    private panelRef;
+    panelRef;
 
     constructor(
         private resolver:ComponentResolver,
-        private panelService: EditPanelService
+        private panelService: EditPanelService,
+        private _injector: Injector
     ) {
          panelService.registerContainer(this);
     }
 
-    open(component, data) {
-        this.panelRef = new PanelRef();
+    open(config): PanelReference {
+        this.panelRef = new PanelReference();
 
-        this.resolver.resolveComponent(component)
-         .then((factory:ComponentFactory<any>) => {
-             if(this.panelContent.createComponent) {
-                this.panelContent = this.panelContent.createComponent(factory);
-            }
+        this.resolver.resolveComponent(config.component)
+            .then((factory:ComponentFactory<any>) => {
+                if(!this.panelContent.instance) {
+                   this.panelContent = this.panelContent.createComponent(factory, 0);
+                }
 
-            this.panelContent.instance.model = Object.assign({}, data);
+                this.panelContent.instance.model = Object.assign({}, (config.data || {}));
          })
 
-         this.title = 'dummy'; //title;
-         this.active = true;
+        this.title = config.options.title;
+        this.active = true;
 
-        return this.panelRef.result;
+        return this.panelRef;
     }
 
        close() {

@@ -45,9 +45,16 @@ export class MetadataDetailsComponent {
     }
 
     editDetails() {
-       let panel = this.panel.open(MetadataDetailsEditComponent, this.details)
+       let panel = this.panel.open(
+           {
+               component: MetadataDetailsEditComponent,
+               data: this.details,
+               options: {
+                 title: 'Edit details'
+               }
+           })
 
-        panel.then(
+        panel.result.then(
             (res) => this.updateNode(res),
             (res) => console.log('dismissed')
         );

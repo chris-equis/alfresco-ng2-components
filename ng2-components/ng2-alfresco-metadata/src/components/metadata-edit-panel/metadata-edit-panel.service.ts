@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 export class EditPanelService {
   private panel: any;
 
-  open(content, node) {
-    return this.panel.open(content, node);
+  open(config: any) {
+    return this.panel.open(config);
   }
 
   registerContainer(panel) {
