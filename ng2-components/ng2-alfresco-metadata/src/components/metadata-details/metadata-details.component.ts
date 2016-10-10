@@ -1,4 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+
+import {
+    MetadataDetailsEditComponent
+} from './metadata-details-edit.component';
 
 declare let __moduleName: string;
 
@@ -13,7 +17,13 @@ export class MetadataDetailsComponent {
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
 
-    constructor() {
-      
+    @Output()
+    onEdit = new EventEmitter();
+
+    editDetails() {
+      this.onEdit.emit({
+          node: this.node,
+          component: MetadataDetailsEditComponent
+      });
     }
 }

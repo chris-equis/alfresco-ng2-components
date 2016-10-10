@@ -6,10 +6,6 @@ import {
     ViewChild
 } from '@angular/core';
 
-import {
-    MetadataDetailsEditComponent
-} from '../metadata-details/metadata-details-edit.component';
-
 declare let __moduleName:string;
 
 @Component({
@@ -19,7 +15,8 @@ declare let __moduleName:string;
     styleUrls: [
         './metadata-edit-panel.component.css'
     ],
-    directives: []
+    directives: [],
+    providers: []
 })
 export class MetadataEditPanelComponent {
     private @ViewChild('panelContent', { read: ViewContainerRef }) panelContent;
@@ -27,32 +24,22 @@ export class MetadataEditPanelComponent {
     active:boolean = false;
     title:string = 'No title';
 
-    constructor(private resolver:ComponentResolver) {
-        resolver
-            .resolveComponent(MetadataDetailsEditComponent)
-            .then((factory:ComponentFactory<any>) => {
-                this.panelContent = this.panelContent.createComponent(factory);
-            })
-    }
+    constructor(
+        private resolver:ComponentResolver
+    ) {}
 
-    open(title:string) {
-        this.title = title;
-        this.active = true;
+    open(title:string, component) {
+        this.resolver
+            .resolveComponent(component)
+            .then((factory:ComponentFactory<any>) => {
+                console.log(this.panelContent.createComponent(factory));
+
+                this.title = title;
+                this.active = true;
+            });
     }
 
     close() {
         this.active = false;
     }
-
-    // private createPanelContent(): any {
-    //     @Component({
-    //         selector: 'panel-content',
-    //         template: '<div>{{ title }}</div>'
-    //     })
-    //     class PanelContent {
-    //         title:string = 'Wow!';
-    //     }
-
-    //     return PanelContent;
-    // }
 }

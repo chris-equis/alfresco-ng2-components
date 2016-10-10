@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+// import { Observable } from 'rxjs/Rx';
 
 import {
     MetadataAdvancedPropertiesComponent,
@@ -26,7 +26,8 @@ declare let __moduleName: string;
         MetadataDetailsComponent,
         MetadataTagsComponent,
         MetadataEditPanelComponent
-    ]
+    ],
+    providers: []
 })
 export class Ng2AlfrescoMetadataComponent {
     @ViewChild('editPanel')
@@ -34,7 +35,7 @@ export class Ng2AlfrescoMetadataComponent {
 
     node: any = null;
 
-    get isActive():boolean {
+    get isActive(): boolean {
         return !!this.node;
     }
 
@@ -46,8 +47,8 @@ export class Ng2AlfrescoMetadataComponent {
         this.node = null;
     }
 
-    openEditPanel() {
-        this.editPanel.open('The title of the panel!!!');
+    openEditPanel(e) {
+        this.editPanel.open(e.node.name, e.component);
     }
 }
 
