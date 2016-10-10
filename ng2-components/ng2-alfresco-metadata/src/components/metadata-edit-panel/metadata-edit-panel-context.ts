@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PanelReference {
-  private _resolve: (result?: any) => void;
-  private _reject: (reason?: any) => void;
+  public _resolve: (result?: any) => void;
+  public _reject: (reason?: any) => void;
 
   result: Promise<any>;
 

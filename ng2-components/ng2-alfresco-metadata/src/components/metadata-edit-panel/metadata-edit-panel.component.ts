@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { EditPanelService } from './metadata-edit-panel.service';
-import { PanelReference, NgbActiveModal, ContentRef } from './metadata-edit-panel-context';
+import { PanelReference } from './metadata-edit-panel-context';
 
 declare let __moduleName:string;
 
@@ -27,12 +27,11 @@ export class MetadataEditPanelComponent {
     @ViewChild('panelContent', { read: ViewContainerRef }) panelContent;
     active:boolean = false;
     title:string = 'No title';
-    panelRef;
+    panelRef: PanelReference;
 
     constructor(
         private resolver:ComponentResolver,
-        private panelService: EditPanelService,
-        private _injector: Injector
+        private panelService: EditPanelService
     ) {
          panelService.registerContainer(this);
     }
@@ -55,13 +54,13 @@ export class MetadataEditPanelComponent {
         return this.panelRef;
     }
 
-       close() {
-         this.active = false;
-         return this.panelRef._resolve(this.panelContent.instance.model)
-       }
+    close() {
+        this.active = false;
+        return this.panelRef._resolve(this.panelContent.instance.model)
+    }
 
-       dismiss() {
-         this.active = false;
-         return this.panelRef._reject(this.panelContent.instance.model);
-       }
+    dismiss() {
+        this.active = false;
+        return this.panelRef._reject(this.panelContent.instance.model);
+    }
 }
