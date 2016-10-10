@@ -60,9 +60,12 @@ export class MetadataEditPanelComponent {
 
         this.resolver.resolveComponent(component)
          .then((factory:ComponentFactory<any>) => {
-             this.panelContent = this.panelContent.createComponent(factory);
-             this.panelContent.instance.model = Object.assign({}, data);;
-         });
+             if(this.panelContent.createComponent) {
+                this.panelContent = this.panelContent.createComponent(factory);
+            }
+
+            this.panelContent.instance.model = Object.assign({}, data);
+         })
 
          this.title = 'dummy'; //title;
          this.active = true;
