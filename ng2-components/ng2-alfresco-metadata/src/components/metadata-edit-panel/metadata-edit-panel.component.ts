@@ -6,7 +6,31 @@ import {
     ViewChild
 } from '@angular/core';
 
+import { EditPanelService } from './metadata-edit-panel.service';
+
 declare let __moduleName:string;
+
+class PanelRef {
+  private _resolve: (result?: any) => void;
+  private _reject: (reason?: any) => void;
+
+  result: Promise<any>;
+
+  constructor() {
+    this.result = new Promise((resolve, reject) => {
+      this._resolve = resolve;
+      this._reject = reject;
+    });
+  }
+
+  close(result?: any) {
+      this._resolve(result);
+  }
+
+  dismiss(reason?: any) {
+      this._reject(reason);
+  }
+}
 
 @Component({
     moduleId: __moduleName,
@@ -19,27 +43,40 @@ declare let __moduleName:string;
     providers: []
 })
 export class MetadataEditPanelComponent {
-    private @ViewChild('panelContent', { read: ViewContainerRef }) panelContent;
-    model:any;
+    @ViewChild('panelContent', { read: ViewContainerRef }) panelContent;
     active:boolean = false;
     title:string = 'No title';
+    private panelRef;
 
     constructor(
-        private resolver:ComponentResolver
-    ) {}
-
-    open(title:string, component) {
-        this.resolver
-            .resolveComponent(component)
-            .then((factory:ComponentFactory<any>) => {
-                console.log(this.panelContent.createComponent(factory));
-
-                this.title = title;
-                this.active = true;
-            });
+        private resolver:ComponentResolver,
+        private panelService: EditPanelService
+    ) {
+         panelService.registerContainer(this);
     }
 
-    close() {
-        this.active = false;
+    open(component, data) {
+        this.panelRef = new PanelRef();
+
+        this.resolver.resolveComponent(component)
+         .then((factory:ComponentFactory<any>) => {
+             this.panelContent = this.panelContent.createComponent(factory);
+             this.panelContent.instance.model = Object.assign({}, data);;
+         });
+
+         this.title = 'dummy'; //title;
+         this.active = true;
+
+        return this.panelRef.result;
     }
+
+       close() {
+         this.active = false;
+         return this.panelRef._resolve(this.panelContent.instance.model)
+       }
+
+       dismiss() {
+         this.active = false;
+         return this.panelRef._reject(this.panelContent.instance.model);
+       }
 }

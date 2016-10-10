@@ -12,7 +12,15 @@ import {
 
 import {
   MetadataDetailsService
-} from './metadata-details.service'
+} from './metadata-details.service';
+
+import {
+    EditPanelService
+} from '../metadata-edit-panel/metadata-edit-panel.service';
+
+import {
+    Details
+} from './metadata-details.model';
 
 declare let __moduleName: string;
 
@@ -28,21 +36,21 @@ export class MetadataDetailsComponent {
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
 
-    @Output()
-    onEdit = new EventEmitter();
-
-    details: Object = {};
+    details: Details;
     loading:boolean = false;
 
-    constructor(private metadataDetailsService: MetadataDetailsService) {
-
+    constructor(
+        private panel: EditPanelService,
+        private metadataDetailsService: MetadataDetailsService) {
     }
 
     editDetails() {
-        this.onEdit.emit({
-            node: this.node,
-            component: MetadataDetailsEditComponent
-        });
+       let panel = this.panel.open(MetadataDetailsEditComponent, this.details)
+
+        panel.then(
+            (res) => this.updateNode(res),
+            (res) => console.log('dismissed')
+        );
     }
 
     loadDetails() {
@@ -55,7 +63,7 @@ export class MetadataDetailsComponent {
                 this.loading = false;
             })
             .subscribe((result:any) => {
-                this.details = result.entry;
+                this.details = new Details(result.entry);
             }, error => {
                 this.details = {}
             });
@@ -68,5 +76,14 @@ export class MetadataDetailsComponent {
             this.node = node;
             this.loadDetails();
         }
+    }
+
+    private updateNode(data) {
+        this
+            .metadataDetailsService
+            .updateNode(this.node.id, this.details.properties(data))
+            .subscribe((details: any) => {
+                this.details  = new Details(details.entry);
+            });
     }
 }

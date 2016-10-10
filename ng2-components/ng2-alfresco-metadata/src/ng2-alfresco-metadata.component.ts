@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-// import { Observable } from 'rxjs/Rx';
+
+import {
+    EditPanelService
+} from './components/metadata-edit-panel/metadata-edit-panel.service';
 
 import {
     MetadataAdvancedPropertiesComponent,
@@ -27,7 +30,7 @@ declare let __moduleName: string;
         MetadataTagsComponent,
         MetadataEditPanelComponent
     ],
-    providers: []
+    providers: [EditPanelService]
 })
 export class Ng2AlfrescoMetadataComponent {
     @ViewChild('editPanel')
@@ -48,7 +51,7 @@ export class Ng2AlfrescoMetadataComponent {
     }
 
     openEditPanel(e) {
-        this.editPanel.open(e.node.name, e.component);
+        // this.editPanel.open(e.node.name, e.component);
     }
 }
 

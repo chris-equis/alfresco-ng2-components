@@ -8,22 +8,17 @@
     <div class="alf-edit__actions">
       <button
         class="mdl-button mdl-js-button mdl-js-ripple-effect"
-        (click)="close()">
+        (click)="dismiss()">
         Cancel
       </button>
       <button
-        class="mdl-button mdl-js-button mdl-js-ripple-effect">
+        class="mdl-button mdl-js-button mdl-js-ripple-effect"
+        (click)="close()">
         Save
       </button>
-    </div>      
-  </div>
-  
-  <div class="alf-edit__sub-header">
-    <div class="alf-edit__sub-title">
-      Dublin core
     </div>
   </div>
-  
+
   <div class="alf-edit__content">
     <div #panelContent></div>
   </div>

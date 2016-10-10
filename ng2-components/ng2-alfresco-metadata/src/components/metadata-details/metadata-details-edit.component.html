@@ -1,14 +1,46 @@
 <form>
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <input
-      id="sample3"
+      id="title"
       class="mdl-textfield__input"
+      name="title"
+      [(ngModel)]="model.title"
       type="text">
 
     <label
       class="mdl-textfield__label"
-      for="sample3">
-      {{ label }}
-     </label>
+      for="title">
+      Title
+    </label>
+  </div>
+
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input
+      id="author"
+      name="author"
+      class="mdl-textfield__input"
+      [(ngModel)]="model.author"
+      type="text">
+
+    <label
+      class="mdl-textfield__label"
+      for="author">
+      Author
+    </label>
+  </div>
+
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <textarea
+      id="description"
+      name="description"
+      class="mdl-textfield__input"
+      [(ngModel)]="model.description">
+    </textarea>
+
+    <label
+    class="mdl-textfield__label"
+    for="description">
+    Description
+   </label>
   </div>
 </form>
