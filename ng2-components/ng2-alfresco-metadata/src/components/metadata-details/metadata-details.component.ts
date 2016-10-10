@@ -1,8 +1,18 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  OnChanges
+} from '@angular/core';
 
 import {
     MetadataDetailsEditComponent
 } from './metadata-details-edit.component';
+
+import {
+  MetadataDetailsService
+} from './metadata-details.service'
 
 declare let __moduleName: string;
 
@@ -10,7 +20,8 @@ declare let __moduleName: string;
     moduleId: __moduleName,
     selector: 'metadata-details',
     templateUrl: './metadata-details.component.html',
-    styleUrls: ['./metadata-details.component.css']
+    styleUrls: ['./metadata-details.component.css'],
+    providers: [MetadataDetailsService]
 })
 export class MetadataDetailsComponent {
     @Input()
@@ -20,10 +31,42 @@ export class MetadataDetailsComponent {
     @Output()
     onEdit = new EventEmitter();
 
+    details: Object = {};
+    loading:boolean = false;
+
+    constructor(private metadataDetailsService: MetadataDetailsService) {
+
+    }
+
     editDetails() {
-      this.onEdit.emit({
-          node: this.node,
-          component: MetadataDetailsEditComponent
-      });
+        this.onEdit.emit({
+            node: this.node,
+            component: MetadataDetailsEditComponent
+        });
+    }
+
+    loadDetails() {
+        this.loading = true;
+
+        this
+            .metadataDetailsService
+            .getNode(this.node.id)
+            .finally(() => {
+                this.loading = false;
+            })
+            .subscribe((result:any) => {
+                this.details = result.entry;
+            }, error => {
+                this.details = {}
+            });
+    }
+
+    ngOnChanges(changes) {
+        const node = changes.node.currentValue;
+
+        if(node) {
+            this.node = node;
+            this.loadDetails();
+        }
     }
 }

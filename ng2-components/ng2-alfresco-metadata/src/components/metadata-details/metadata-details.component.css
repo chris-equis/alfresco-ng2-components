@@ -8,6 +8,10 @@
   margin-bottom: 16px;
 }
 
+  :host .mdl-list__item .empty-detail {
+    opacity: .25;
+  }
+
 :host .mdl-list__item:first-child {
   margin-top: 10px;
 }
@@ -32,4 +36,17 @@
 
 :host .fav-icon.fav-icon-active {
   color: #fb8c00;
+}
+
+:host .mdl-list.more-information {
+  border-top: 1px solid #eee;
+}
+
+:host .mdl-button.more-information__toggle-button {
+  font-size: 14px;
+  color: #555;
+  text-transform: inherit;
+  font-weight: normal;
+  float: right;
+  
 }

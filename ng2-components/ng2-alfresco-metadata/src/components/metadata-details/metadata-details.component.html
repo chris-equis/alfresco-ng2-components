@@ -50,11 +50,61 @@
     </li>
   </ul>
 
+  <ul class="mdl-list more-information" *ngIf="moreInformation">
+    <li class="mdl-list__item mdl-list__item--two-line">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Title</span>
+        <span [ngClass]="{'empty-detail': !details.properties['cm:title']}">
+          {{ details.properties['cm:title'] || 'None' }}
+        </span>
+      </span>
+    </li>
+
+    <li class="mdl-list__item mdl-list__item--two-line">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Author</span>
+        <span [ngClass]="{'empty-detail': !node.prop}">
+          {{ node.prop || 'None' }}
+        </span>
+      </span>
+    </li>
+
+    <li class="mdl-list__item mdl-list__item--two-line">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Description</span>
+        <span [ngClass]="{'empty-detail': !details.properties['cm:description']}">
+          {{ details.properties['cm:description'] || 'None' }}
+        </span>
+      </span>
+    </li>
+
+    <li class="mdl-list__item mdl-list__item--two-line">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Mimetype</span>
+        <span [ngClass]="{'empty-detail': !node.prop}">
+          {{ node.prop || 'None' }}
+        </span>
+      </span>
+    </li>
+  </ul>
+
   <div class="mdl-card__actions mdl-card--border">
+    <button
+      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">star</i>
+    </button>
+
     <button
       class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
       (click)="editDetails()">
       <i class="material-icons">edit</i>
+    </button>
+
+    <button
+      class="mdl-button mdl-js-button mdl-js-ripple-effect more-information__toggle-button"
+      (click)="moreInformation = !moreInformation">
+      <span *ngIf="moreInformation">Less information</span>
+      <span *ngIf="!moreInformation">More information</span>
     </button>
   </div>
 </div>
