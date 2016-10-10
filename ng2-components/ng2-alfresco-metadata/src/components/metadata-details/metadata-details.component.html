@@ -15,7 +15,8 @@
       </span>
     </li>
 
-    <li class="mdl-list__item mdl-list__item--two-line">
+    <li class="mdl-list__item mdl-list__item--two-line"
+    *ngIf="!details.isFolder">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Size</span>
         <span>{{ details.sizeInBytes }} bytes</span>
