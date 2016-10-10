@@ -1,16 +1,4 @@
-import {Injectable, ViewRef,
-  ComponentRef} from '@angular/core';
-
-
-export class ContentRef {
-  constructor(public nodes: any[], public viewRef?: ViewRef, public componentRef?: ComponentRef<any>) {}
-}
-
-@Injectable()
-export class NgbActiveModal {
-  close(result?: any): void {}
-  dismiss(reason?: any): void {}
-}
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PanelReference {
