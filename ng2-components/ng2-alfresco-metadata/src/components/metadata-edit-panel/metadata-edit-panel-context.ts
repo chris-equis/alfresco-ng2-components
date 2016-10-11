@@ -2,23 +2,23 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PanelReference {
-  public _resolve: (result?: any) => void;
-  public _reject: (reason?: any) => void;
+  public resolve: (result?: any) => void;
+  public reject: (reason?: any) => void;
 
   result: Promise<any>;
 
   constructor() {
     this.result = new Promise((resolve, reject) => {
-      this._resolve = resolve;
-      this._reject = reject;
+      this.resolve = resolve;
+      this.reject = reject;
     });
   }
 
-  close(result?: any) {
-      this._resolve(result);
+  close(result?: any): void {
+      this.resolve(result);
   }
 
-  dismiss(reason?: any) {
-      this._reject(reason);
+  dismiss(reason?: any): void {
+      this.reject(reason);
   }
 }

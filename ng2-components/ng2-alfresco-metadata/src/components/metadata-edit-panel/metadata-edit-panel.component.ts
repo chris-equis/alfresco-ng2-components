@@ -3,9 +3,7 @@ import {
     ComponentResolver,
     ViewContainerRef,
     ComponentFactory,
-    ViewChild,
-    ReflectiveInjector,
-    Injector
+    ViewChild
 } from '@angular/core';
 
 import { EditPanelService } from './metadata-edit-panel.service';
@@ -24,43 +22,41 @@ declare let __moduleName:string;
     providers: []
 })
 export class MetadataEditPanelComponent {
-    @ViewChild('panelContent', { read: ViewContainerRef }) panelContent;
+    @ViewChild('content', {read: ViewContainerRef}) content;
+    @ViewChild('component', { read: ViewContainerRef }) component;
+
     active:boolean = false;
     title:string = 'No title';
-    panelRef: PanelReference;
+    private panelRef: PanelReference;
 
     constructor(
-        private resolver:ComponentResolver,
+        private resolver: ComponentResolver,
         private panelService: EditPanelService
     ) {
          panelService.registerContainer(this);
     }
 
-    open(config): PanelReference {
-        this.panelRef = new PanelReference();
-
-        this.resolver.resolveComponent(config.component)
-            .then((factory:ComponentFactory<any>) => {
-                if(!this.panelContent.instance) {
-                   this.panelContent = this.panelContent.createComponent(factory, 0);
-                }
-
-                this.panelContent.instance.model = Object.assign({}, (config.data || {}));
-         })
+    open(config): PanelReference  {
+        this.resolver.resolveComponent(config.component).then((factory) => {
+              this.content.clear();
+              this.component = this.content.createComponent(factory);
+              this.component.instance.model = Object.assign({}, (config.data || {}));
+          });
 
         this.title = config.options.title;
         this.active = true;
+        this.panelRef = new PanelReference();
 
         return this.panelRef;
     }
 
-    close() {
+    close(): void {
         this.active = false;
-        return this.panelRef._resolve(this.panelContent.instance.model)
+        this.panelRef.resolve(this.component.instance.model)
     }
 
-    dismiss() {
+    dismiss(): void {
         this.active = false;
-        return this.panelRef._reject(this.panelContent.instance.model);
+        this.panelRef.reject(this.component.instance.model);
     }
 }
