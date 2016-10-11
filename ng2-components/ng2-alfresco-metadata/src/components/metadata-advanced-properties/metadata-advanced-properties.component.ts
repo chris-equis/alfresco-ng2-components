@@ -21,7 +21,7 @@ export class MetadataAdvancedPropertiesComponent {
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
 
-    constructor(private panel: EditPanelService,) {
+    constructor(private panel: EditPanelService) {
     }
 
     edit() {
