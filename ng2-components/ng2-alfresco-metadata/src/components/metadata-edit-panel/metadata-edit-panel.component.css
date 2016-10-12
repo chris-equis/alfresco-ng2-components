@@ -47,6 +47,6 @@
 
 :host .alf-edit__content {}
 
-:host .alf-edit__content .mdl-textfield {
+:host .alf-edit .mdl-textfield {
   width: 100%;
 }
