@@ -1,5 +1,8 @@
-<div class="alf-accordion__item">
-  <div class="alf-accordion__item-title">
+<div
+  class="alf-accordion__item"
+  [ngClass]="{'alf-accordion__item--expanded': expanded}">
+
+  <div class="alf-accordion__item-title" (click)="toggle()">
     <ng-content select="alfresco-accordion-title"></ng-content>
     <i class="material-icons alf-accordion__toggle-icon">keyboard_arrow_down</i>
   </div>

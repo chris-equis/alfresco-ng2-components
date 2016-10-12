@@ -9,17 +9,5 @@ declare let __moduleName: string;
     styleUrls: ['./metadata-accordion.component.css']
 })
 export class MetadataAccordionComponent {
-    @Input()
-    expanded: boolean = false;
     
-    constructor() {
-    }
-
-    expand(): void {
-
-    }
-
-    collapse(): void {
-
-    }
 }

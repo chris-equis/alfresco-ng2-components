@@ -12,14 +12,9 @@ export class MetadataAccordionItemComponent {
     @Input()
     expanded: boolean = false;
     
-    constructor() {
-    }
+    constructor() {}
 
-    expand(): void {
-
-    }
-
-    collapse(): void {
-
+    toggle(): void {
+        this.expanded = !this.expanded;
     }
 }
