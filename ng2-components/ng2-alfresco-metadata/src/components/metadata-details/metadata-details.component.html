@@ -108,6 +108,8 @@
       (click)="moreInformation = !moreInformation">
       <span *ngIf="moreInformation">Less information</span>
       <span *ngIf="!moreInformation">More information</span>
+
+      <i class="material-icons">{{ moreInformation ? 'keyboard_arrow_up' :  'keyboard_arrow_down' }}</i>
     </button>
   </div>
 </div>
