@@ -6,6 +6,8 @@ import {
   OnChanges
 } from '@angular/core';
 
+import {Observable} from 'rxjs/Observable';
+
 import {
     MetadataDetailsEditComponent
 } from './metadata-details-edit.component';
@@ -38,6 +40,7 @@ export class MetadataDetailsComponent {
 
     details: Details;
     loading:boolean = false;
+    favorite: any = {};
 
     constructor(
         private panel: EditPanelService,
@@ -60,20 +63,35 @@ export class MetadataDetailsComponent {
         );
     }
 
+    toggleFavorite() {
+      let callAPI: Observable<Object>;
+
+      if(this.favorite.entry) {
+        callAPI = this.metadataDetailsService.removeFavorite(this.favorite);
+      } else {
+        callAPI = this.metadataDetailsService.addFavorite(this.node);
+      }
+
+      callAPI
+        .subscribe((res) => {
+          this.favorite = res || {};
+        });
+    }
+
     loadDetails() {
         this.loading = true;
 
-        this
-            .metadataDetailsService
-            .getNode(this.node.id)
-            .finally(() => {
-                this.loading = false;
-            })
-            .subscribe((result:any) => {
-                this.details = new Details(result.entry);
-            }, error => {
-                this.details = {}
-            });
+        Observable
+          .forkJoin([
+              this.metadataDetailsService.getNode(this.node.id),
+              this.metadataDetailsService.getFavorites(this.node)
+           ])
+          .subscribe(data => {
+              this.details = new Details(data[0].entry);
+              this.favorite = (data[1] || {});
+          }, error => {
+              this.details = {}
+          });
     }
 
     ngOnChanges(changes) {

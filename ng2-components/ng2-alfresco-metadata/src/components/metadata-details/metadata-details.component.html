@@ -92,8 +92,9 @@
 
   <div class="mdl-card__actions mdl-card--border">
     <button
-      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-      <i class="material-icons">star</i>
+      class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+      (click)="toggleFavorite()">
+      <i class="material-icons">{{ favorite.entry ? 'star' : 'star_border' }}</i>
     </button>
 
     <button
