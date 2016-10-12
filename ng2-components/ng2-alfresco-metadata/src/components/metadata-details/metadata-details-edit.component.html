@@ -1,5 +1,6 @@
 <form>
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+  [ngClass]="{'is-dirty': !!model.title}">
     <input
       id="title"
       class="mdl-textfield__input"
@@ -14,7 +15,8 @@
     </label>
   </div>
 
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+  [ngClass]="{'is-dirty': !!model.author}">
     <input
       id="author"
       name="author"

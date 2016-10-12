@@ -29,6 +29,10 @@ export class MetadataDetailsService {
         return this.authService.getAlfrescoApi().core.nodesApi;
     }
 
+    private get favoritesApi() {
+        return this.authService.getAlfrescoApi().core.favoritesApi
+    }
+
     public getNode(nodeId: string): Observable<Object> {
         return Observable
             .fromPromise(this.nodesApi.getNode(nodeId))
@@ -39,5 +43,50 @@ export class MetadataDetailsService {
         return Observable
             .fromPromise(this.nodesApi.updateNode(nodeId, {properties}))
             .catch((e: Error) => Observable.of(e));
+    }
+
+    public getFavorites(node: any): Observable<Object> {
+        return Observable
+            .fromPromise(this.favoritesApi.getFavorites('-me-', {
+                'where': `(EXISTS(target/${this.getType(node)}))`,
+                'fields': ['targetGuid']
+            }))
+            .map((res: any) => {
+                return res.list.entries
+                    .filter(entry => {
+                        return entry.entry.targetGuid === node.id;
+                    })
+            })
+            .map(res => (res[0] || {}))
+            .catch((e: Error) => Observable.of(e));
+    }
+
+    public removeFavorite(favorite: any): Observable<Object> {
+        return Observable
+            .fromPromise(this.favoritesApi.removeFavoriteSite('-me-', favorite.entry.targetGuid))
+            .catch((e: Error) => Observable.of(e));
+    }
+
+    public addFavorite(node: any): Observable<Object> {
+        const favBody = {
+           target: {
+              [this.getType(node)]: {
+                 guid: node.id
+              }
+           }
+        };
+
+        return Observable
+            .fromPromise(this.favoritesApi.addFavorite('-me-', favBody))
+            .catch((e: Error) => Observable.of(e));
+    }
+
+    private getType(node: any): string {
+        const types = {
+            content: () => 'file',
+            folder: () =>  'folder'
+        }
+
+        return types[node.nodeType.split(':')[1]]();
     }
 }
