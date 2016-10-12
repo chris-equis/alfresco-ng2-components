@@ -24,6 +24,27 @@
     <p>No tags, yet!</p>
   </div>
 
+  <div class="mdl-card__content" *ngIf="tags.length">
+    <span
+      id="metadata-tag-{{ tagObject.entry.id }}"
+      class="mdl-chip tag-item"
+      *ngFor="let tagObject of tags"
+      [ngClass]="{ 'mdl-chip--deletable': editing }">
+      
+      <span class="mdl-chip__text">
+        {{ tagObject.entry.tag }}
+      </span>
+
+      <button
+        type="button"
+        class="mdl-chip__action"
+        (click)="removeTag(tagObject.entry.id)"
+        [hidden]="!editing">
+        <i class="material-icons">cancel</i>
+      </button>
+    </span>
+  </div>
+
   <div class="mdl-card__content" *ngIf="editing">
     <form action="#">
       <div class="mdl-textfield mdl-js-textfield">
@@ -51,27 +72,5 @@
         </button>    
       </div>
     </form>
-  </div>
-
-  <div class="mdl-card__content" *ngIf="tags.length">
-    <span
-      id="metadata-tag-{{ tagObject.entry.id }}"
-      class="mdl-chip tag-item"
-      *ngFor="let tagObject of tags"
-      [ngClass]="{ 'mdl-chip--deletable': editing }">
-      
-      <span class="mdl-chip__text">
-        {{ tagObject.entry.tag }}
-      </span>
-
-      <button
-        type="button"
-        class="mdl-chip__action"
-        (click)="removeTag(tagObject.entry.id)"
-        [hidden]="!editing">
-        <i class="material-icons">cancel</i>
-      </button>
-    </span>
-
   </div>
 </div>
