@@ -6,7 +6,26 @@
   </div>
 
   <div class="mdl-card__content">
-    <p>Not implemented, yet!</p>
+    <metadata-accordion>
+      <metadata-accordion-item *ngFor="let item of advancedPropertiesMock">
+        <alfresco-accordion-title>
+          {{ item.title }}
+        </alfresco-accordion-title>
+
+        <alfresco-accordion-content>
+          <ul class="mdl-list">
+            <li
+              class="mdl-list__item mdl-list__item--two-line"
+              *ngFor="let property of item.properties">
+              <span class="mdl-list__item-primary-content">
+                <span class="mdl-list__item-sub-title">{{ property.label }}</span>
+                <span>{{ property.value }}</span>
+              </span>
+            </li>
+          </ul>
+        </alfresco-accordion-content>
+      </metadata-accordion-item>
+    </metadata-accordion>
   </div>
 
   <div class="mdl-card__menu">
