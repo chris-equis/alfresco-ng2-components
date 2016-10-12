@@ -8,6 +8,14 @@ import {
   MetadataAccordionItemComponent
 } from './metadata-accordion/metadata-accordion-item.component';
 
+import {
+    EditPanelService
+} from '../metadata-edit-panel/metadata-edit-panel.service';
+
+import {
+    MetadataAdvancedPropertiesEdit
+} from './metadata-advanced-properties-edit.component';
+
 declare let __moduleName: string;
 
 @Component({
@@ -47,6 +55,22 @@ export class MetadataAdvancedPropertiesComponent {
       }]
     }];
 
-    constructor() {
+    constructor(private panel: EditPanelService) {
+    }
+
+    edit() {
+       let panel = this.panel.open(
+           {
+               component: MetadataAdvancedPropertiesEdit,
+               data: {},
+               options: {
+                 title: 'Edit advanced properties'
+               }
+           })
+
+        panel.result.then(
+            (res) => console.log('close'),
+            (res) => console.log('dismissed')
+        );
     }
 }
