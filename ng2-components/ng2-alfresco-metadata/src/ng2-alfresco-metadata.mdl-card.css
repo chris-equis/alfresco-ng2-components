@@ -25,7 +25,8 @@
   padding: 16px;
 }
 
-  :host .mdl-card__content > .mdl-list {
+  :host .mdl-card__content > .mdl-list,
+  :host .mdl-card__content > metadata-accordion {
     margin: -16px;
   }
 

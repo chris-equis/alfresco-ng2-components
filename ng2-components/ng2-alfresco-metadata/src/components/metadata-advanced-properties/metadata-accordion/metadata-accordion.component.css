@@ -1,0 +1,49 @@
+:host {
+  display: block;
+}
+
+:host .alf-accordion {
+  
+}
+
+:host .alf-accordion__item {
+  border-bottom: 1px solid #ddd;
+}
+
+:host .alf-accordion__item:last-child {
+  border-bottom-width: 0;
+}
+
+:host .alf-accordion__item-title {
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+:host .alf-accordion__item-title > .alf-accordion__toggle-icon {
+  float: right;
+}
+
+:host .alf-accordion__item.alf-accordion__item--expanded .alf-accordion__item-title > .alf-accordion__toggle-icon {
+  transform: rotate(180deg);
+}
+
+:host .alf-accordion__item.alf-accordion__item--expanded .alf-accordion__item-content {
+  display: block;
+}
+
+:host .alf-accordion__item-content {
+  display: none;
+}
+  :host .alf-accordion__item-content .mdl-list {
+    padding: 0;
+    margin: 0;
+  }
+
+:host .alf-accordion__item-content .mdl-list .mdl-list__item--two-line {
+  margin: 10px 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: auto;
+}
