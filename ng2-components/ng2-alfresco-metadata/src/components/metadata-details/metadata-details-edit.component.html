@@ -1,11 +1,11 @@
 <form>
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-  [ngClass]="{'is-dirty': !!model.title}">
+  [ngClass]="{'is-dirty': !!model.properties['cm:title']}">
     <input
       id="title"
       class="mdl-textfield__input"
       name="title"
-      [(ngModel)]="model.title"
+      [(ngModel)]="model.properties['cm:title']"
       type="text">
 
     <label
@@ -16,12 +16,12 @@
   </div>
 
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-  [ngClass]="{'is-dirty': !!model.author}">
+  [ngClass]="{'is-dirty': !!model.properties['cm:author']}">
     <input
       id="author"
       name="author"
       class="mdl-textfield__input"
-      [(ngModel)]="model.author"
+      [(ngModel)]="model.properties['cm:author']"
       type="text">
 
     <label
@@ -36,7 +36,7 @@
       id="description"
       name="description"
       class="mdl-textfield__input"
-      [(ngModel)]="model.description">
+      [(ngModel)]="model.properties['cm:description']">
     </textarea>
 
     <label

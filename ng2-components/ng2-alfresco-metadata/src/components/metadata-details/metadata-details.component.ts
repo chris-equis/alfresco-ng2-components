@@ -20,10 +20,6 @@ import {
     EditPanelService
 } from '../metadata-edit-panel/metadata-edit-panel.service';
 
-import {
-    Details
-} from './metadata-details.model';
-
 declare let __moduleName: string;
 
 @Component({
@@ -87,7 +83,7 @@ export class MetadataDetailsComponent {
               this.metadataDetailsService.getFavorites(this.node)
            ])
           .subscribe(data => {
-              this.details = new Details(data[0].entry);
+              this.details = data[0].entry
               this.favorite = (data[1] || {});
           }, error => {
               this.details = {}
@@ -106,9 +102,9 @@ export class MetadataDetailsComponent {
     private updateNode(data) {
         this
             .metadataDetailsService
-            .updateNode(this.node.id, this.details.properties(data))
+            .updateNode(this.node.id, data.properties)
             .subscribe((details: any) => {
-                this.details  = new Details(details.entry);
+                this.details = details.entry;
             });
     }
 }

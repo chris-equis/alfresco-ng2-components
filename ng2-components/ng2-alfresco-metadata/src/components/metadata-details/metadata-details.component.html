@@ -56,8 +56,8 @@
     <li class="mdl-list__item mdl-list__item--two-line">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Title</span>
-        <span [ngClass]="{'empty-detail': !details.title}">
-          {{ details.title || 'None' }}
+        <span [ngClass]="{'empty-detail': !details.properties['cm:title']}">
+          {{ details.properties['cm:title'] || 'None' }}
         </span>
       </span>
     </li>
@@ -65,8 +65,8 @@
     <li class="mdl-list__item mdl-list__item--two-line">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Author</span>
-        <span [ngClass]="{'empty-detail': !details.author}">
-          {{ details.author || 'None' }}
+        <span [ngClass]="{'empty-detail': !details.properties['cm:author']}">
+          {{ details.properties['cm:author'] || 'None' }}
         </span>
       </span>
     </li>
@@ -74,17 +74,17 @@
     <li class="mdl-list__item mdl-list__item--two-line">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Description</span>
-        <span [ngClass]="{'empty-detail': !details.description}">
-          {{ details.description || 'None' }}
+        <span [ngClass]="{'empty-detail': !details.properties['cm:description']}">
+          {{ details.properties['cm:description'] || 'None' }}
         </span>
       </span>
     </li>
 
-    <li class="mdl-list__item mdl-list__item--two-line">
+    <li class="mdl-list__item mdl-list__item--two-line" *ngIf="details.content">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Mimetype</span>
-        <span [ngClass]="{'empty-detail': !details.mimeTypeName}">
-          {{ details.mimeTypeName || 'None' }}
+        <span [ngClass]="{'empty-detail': !details.content.mimeTypeName}">
+          {{ details.content.mimeTypeName || 'None' }}
         </span>
       </span>
     </li>
