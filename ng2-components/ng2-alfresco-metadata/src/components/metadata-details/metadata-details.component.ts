@@ -34,7 +34,7 @@ export class MetadataDetailsComponent {
     node: any;
     // could import "MinimalNodeEntity" from "documentlist" component
 
-    details: Details;
+    details: any = {};
     loading:boolean = false;
     favorite: any = {};
 
