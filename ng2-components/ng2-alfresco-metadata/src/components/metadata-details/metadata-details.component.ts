@@ -43,7 +43,7 @@ export class MetadataDetailsComponent {
         private metadataDetailsService: MetadataDetailsService) {
     }
 
-    editDetails() {
+    edit() {
        let panel = this.panel.open(
            {
                component: MetadataDetailsEditComponent,
@@ -60,15 +60,7 @@ export class MetadataDetailsComponent {
     }
 
     toggleFavorite() {
-      let callAPI: Observable<Object>;
-
-      if(this.favorite.entry) {
-        callAPI = this.metadataDetailsService.removeFavorite(this.favorite);
-      } else {
-        callAPI = this.metadataDetailsService.addFavorite(this.node);
-      }
-
-      callAPI
+      this.toggle()
         .subscribe((res) => {
           this.favorite = res || {};
         });
@@ -77,16 +69,20 @@ export class MetadataDetailsComponent {
     loadDetails() {
         this.loading = true;
 
+        const nodeEntry = this.metadataDetailsService.getNode(this.node.id);
+        const favoriteEntry = nodeEntry.flatMap((data: any) => {
+            return this.metadataDetailsService.getFavorites(data.entry);
+        });
+
         Observable
-          .forkJoin([
-              this.metadataDetailsService.getNode(this.node.id),
-              this.metadataDetailsService.getFavorites(this.node)
-           ])
-          .subscribe(data => {
-              this.details = data[0].entry
-              this.favorite = (data[1] || {});
+          .combineLatest(
+              nodeEntry, favoriteEntry,
+              (node: any, favorite: any) => ({ node, favorite })
+          ).subscribe(response => {
+              this.details = response.node.entry;
+              this.favorite = response.favorite || {};
           }, error => {
-              this.details = {}
+              this.details = {};
           });
     }
 
@@ -106,5 +102,13 @@ export class MetadataDetailsComponent {
             .subscribe((details: any) => {
                 this.details = details.entry;
             });
+    }
+
+    private toggle() {
+      if(this.favorite.entry) {
+        return this.metadataDetailsService.removeFavorite(this.favorite);
+      } else {
+        return this.metadataDetailsService.addFavorite(this.node);
+      }
     }
 }
