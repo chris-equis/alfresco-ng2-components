@@ -1,13 +1,5 @@
 <div class="mdl-card mdl-shadow--2dp metadata-details-card" *ngIf="details">
   <ul class="mdl-list">
-    <li class="mdl-list__item mdl-list__item--two-line"
-    *ngIf="details.mimeTypeName">
-      <span class="mdl-list__item-primary-content">
-        <span class="mdl-list__item-sub-title">Type</span>
-        <span>{{ details.mimeTypeName }}</span>
-      </span>
-    </li>
-
     <li class="mdl-list__item mdl-list__item--two-line" *ngIf="details.isFolder">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Type</span>
@@ -18,8 +10,16 @@
     <li class="mdl-list__item mdl-list__item--two-line"
     *ngIf="!details.isFolder">
       <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-sub-title">Type</span>
+        <span>{{ details.content?.mimeTypeName }}</span>
+      </span>
+    </li>
+
+    <li class="mdl-list__item mdl-list__item--two-line"
+    *ngIf="!details.isFolder">
+      <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Size</span>
-        <span>{{ details.sizeInBytes }} bytes</span>
+        <span>{{ details.content?.sizeInBytes }} bytes</span>
       </span>
     </li>
 
@@ -33,7 +33,7 @@
     <li class="mdl-list__item mdl-list__item--two-line">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Owner</span>
-        <span>{{ details.createdByUser.displayName }}</span>
+        <span>{{ details.createdByUser?.displayName }}</span>
       </span>
     </li>
 
@@ -47,7 +47,7 @@
     <li class="mdl-list__item mdl-list__item--two-line">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-sub-title">Modified</span>
-        <span>{{ details.modifiedAt | date }} by {{ details.modifiedByUser.displayName }}</span>
+        <span>{{ details.modifiedAt | date }} by {{ details.modifiedByUser?.displayName }}</span>
       </span>
     </li>
   </ul>
