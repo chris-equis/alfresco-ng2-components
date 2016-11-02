@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { HTTP_PROVIDERS } from '@angular/http';
 
@@ -27,6 +27,8 @@ import {
     AlfrescoTranslationService,
     CONTEXT_MENU_DIRECTIVES
 } from 'ng2-alfresco-core';
+
+import { Ng2AlfrescoPanelComponent } from 'ng2-alfresco-panel';
 
 import {
     DOCUMENT_LIST_DIRECTIVES,
@@ -46,7 +48,8 @@ import {
         DOCUMENT_LIST_DIRECTIVES,
         CONTEXT_MENU_DIRECTIVES,
         Ng2AlfrescoMetadataComponent,
-        MetadataCommentsComponent
+        MetadataCommentsComponent,
+        Ng2AlfrescoPanelComponent
     ],
     providers: [DOCUMENT_LIST_PROVIDERS],
     pipes: [AlfrescoPipeTranslate],
@@ -111,7 +114,8 @@ import {
                 </content-actions>
             </alfresco-document-list>
 
-            <ng2-alfresco-metadata #metadata></ng2-alfresco-metadata>
+            <ng2-alfresco-panel></ng2-alfresco-panel>
+            <!-- <ng2-alfresco-metadata #metadata></ng2-alfresco-metadata> -->
 
             <context-menu-holder></context-menu-holder>
 
@@ -144,8 +148,8 @@ class MetadataDemo implements OnInit {
 
     ticket: string;
 
-    @ViewChild('metadata')
-    metadata: Ng2AlfrescoMetadataComponent;
+    // @ViewChild('metadata')
+    // metadata: Ng2AlfrescoMetadataComponent;
 
 
     constructor(
@@ -211,22 +215,22 @@ class MetadataDemo implements OnInit {
     }
 
     onNodeClick(event?: any) {
-        const { entry: node } = event.value;
+        // const { entry: node } = event.value;
 
-        this.openMedata(node);
+        // this.openMedata(node);
     }
 
     viewDetails(event) {
         console.log(event);
     }
 
-    openMedata(node: any) {
-        this.metadata.open(node);
-    }
+    // openMedata(node: any) {
+    //     this.metadata.open(node);
+    // }
 
-    closeMetadata() {
-        this.metadata.close();
-    }
+    // closeMetadata() {
+    //     this.metadata.close();
+    // }
 }
 
 bootstrap(MetadataDemo, [

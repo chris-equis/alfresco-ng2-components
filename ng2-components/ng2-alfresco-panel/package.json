@@ -1,8 +1,8 @@
 {
-  "name": "ng2-alfresco-metadata",
-  "description": "Metadata component",
+  "name": "ng2-alfresco-panel",
+  "description": "",
   "version": "0.1.0",
-  "author": "Cristi Socea <cristian.socea@ness.com>",
+  "author": "Bogdan Cilibiu <cilibiu.bogdan@yahoo.com>",
   "scripts": {
     "postinstall": "typings install",
     "clean": "rimraf dist node_modules typings",
@@ -28,10 +28,10 @@
   "typings": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alfresco/ng2-alfresco-metadata.git"
+    "url": "https://github.com/pionnegru/ng2-alfresco-panel.git"
   },
   "bugs": {
-    "url": "https://github.com/alfresco/ng2-alfresco-metadata/issues"
+    "url": "https://github.com/pionnegru/ng2-alfresco-panel/issues"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.3",
@@ -43,15 +43,14 @@
     "@angular/router": "3.0.0-alpha.7",
     "@angular/router-deprecated": "2.0.0-rc.2",
     "@angular/upgrade": "2.0.0-rc.3",
-    "alfresco-js-api": "^0.3.0",
+    "systemjs": "0.19.27",
     "core-js": "^2.4.0",
-    "ng2-activiti-form": "^0.3.3",
-    "ng2-alfresco-panel": "file:../ng2-alfresco-panel",
-    "ng2-translate": "2.2.2",
     "reflect-metadata": "^0.1.3",
     "rxjs": "5.0.0-beta.6",
-    "systemjs": "0.19.27",
-    "zone.js": "^0.6.12"
+    "zone.js": "^0.6.12",
+    "ng2-translate": "2.2.2",
+    "ng2-alfresco-core": "^0.3.0",
+    "alfresco-js-api": "^0.3.0"
   },
   "devDependencies": {
     "angular-cli": "1.0.0-beta.9",
@@ -75,7 +74,6 @@
     "wsrv": "^0.1.3"
   },
   "keywords": [
-    "metadata",
     "alfresco-component"
   ],
   "license": "Apache-2.0"
