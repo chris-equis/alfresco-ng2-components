@@ -38,6 +38,8 @@ export class Ng2AlfrescoPanelComponent {
         const serviceProvider = [{provide: PanelInstance, useValue: panelInstance}];
         const service: Injector = ReflectiveInjector.resolveAndCreate(serviceProvider, injector);
 
+        if (this.active) return panelRef;
+
         this.resolver
             .resolveComponent(config.component)
             .then((factory: ComponentFactory<any>) => {
